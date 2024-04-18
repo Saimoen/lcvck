@@ -1,14 +1,16 @@
 <nav
-  class="navbar navbar-expand-md bg-dark sticky-top border-bottom"
+  class="navbar navbar-expand-md bg-dark sticky-top border-bottom justify-content-between"
   data-bs-theme="dark"
 >
-  <div class="container">
-    <a class="navbar-brand d-md-none" href="#">
-      <svg class="bi" width="24" height="24">
-        <use xlink:href="#aperture" />
-      </svg>
-      Aperture
-    </a>
+  <div>
+    <img
+      src="../../../../assets/logo.png"
+      style="height: 49px; margin-left: 112px"
+      alt=""
+    />
+  </div>
+  <div>
+    <a class="navbar-brand d-md-none" href="#"> Aperture </a>
     <button
       class="navbar-toggler"
       type="button"
@@ -35,7 +37,7 @@
         ></button>
       </div>
       <div class="offcanvas-body">
-        <ul class="navbar-nav flex-grow-1 justify-content-between">
+        <ul class="navbar-nav flex-grow-1 justify-content-end">
           <li class="nav-item">
             <a class="nav-link" href="#">
               <svg class="bi" width="24" height="24">
@@ -44,19 +46,26 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/accueil">Accueil</a>
+            <a class="nav-link mx-4" routerLink="/accueil">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/apropos">A propos</a>
+            <a class="nav-link mx-4" routerLink="/apropos">A propos</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link mx-4" routerLink="/lesclubs">Compétitions</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link mx-4" routerLink="/documentaires"
+              >Documentaires</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/lesclubs">Les clubs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/documentaires">Nos documentaires</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/contact">Contact</a>
+            <a
+              class="nav-link mx-4"
+              style="margin-right: 20px"
+              routerLink="/contact"
+              >Contact</a
+            >
           </li>
         </ul>
       </div>
