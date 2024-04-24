@@ -8,11 +8,12 @@ import { NavbarComponent } from './shared/component/navbar/navbar.component';
 import { FooterComponent } from './shared/component/footer/footer.component';
 import { AboutComponent } from './components/about/about.component';
 import { NgIf } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, NavbarComponent, FooterComponent, AboutComponent, ClubComponent, DocumentairesComponent, ContactComponent, RouterLink, NgIf],
+  imports: [RouterOutlet, HomeComponent, NavbarComponent, FooterComponent, AboutComponent, ClubComponent, DocumentairesComponent, ContactComponent, RouterLink, NgIf, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
