@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import * as L from 'leaflet';
+import { LeafletDataService } from '../../shared/services/leaflet-data.service';
 
 @Component({
   selector: 'app-contact',
@@ -10,40 +11,62 @@ import * as L from 'leaflet';
   styleUrl: './contact.component.scss',
 })
 export class ContactComponent {
+  public data: any = [];
+  public markers: L.Marker[] = []; // Array to hold Leaflet markers
+  public latitude: number = -22.280849;
+  public longitude: number = 166.433937;
+  public layers: L.Layer[] = [];
+  public map!: L.Map;
+
+  constructor(private leafletDataService: LeafletDataService) {}
+
+  ngOnInit() {
+    this.leafletDataService.getCoordonnees().subscribe((data: any) => {
+      this.data = data;
+      console.log(this.data);
+      this.layers = [];
+      this.data.forEach((element: any) => {
+        const marker = L.marker(
+          [element.address.geo.lat, element.address.geo.lng],
+          {
+            // icon: L.icon({
+            //   iconUrl: '../../assets/img/marker-icon.png',
+            //   shadowUrl: '../../assets/marker-shadow.png',
+            // }),
+            icon: L.divIcon({
+              className: 'custom-icon',
+              html: `
+              <img src="../../assets/img/marker-icon.png" alt="marker-icon" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" />
+              <div style="width: 330px; position: absolute; bottom: 20px;">
+                <div class="card card-body collapse" id="collapseExample">
+                  <p class="card-text"><span class="fs-5">L</span>igue <span class="fs-5">C</span>alédonienne de <span class="fs-5">V</span>a'a et de <span class="fs-5">C</span>anoë <span class="fs-5">K</span>ayak</p>
+                  <p class="fst-italic">Artillerie, Nouméa 98800,</p>
+                  <p class="fst-italic">Nouméa 98800, Nouvelle-Calédonie</p>
+                </div>
+              </div>
+              `,
+            })            
+          }
+        ).on('click', (event) => {
+
+          console.log('Yay, my marker was clicked!', event);
+        });
+
+        this.layers.push(marker);
+      });
+    });
+  }
+
   options = {
     layers: [
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 30,
+        maxZoom: 16,
         attribution: '...',
       }),
     ],
-    zoom: 7,
-    center: L.latLng(-22.280849,  166.433937),
+    zoom: 16,
+    center: L.latLng(-22.280849, 166.433937),
   };
-  layersControl = {
-    baseLayers: {
-      'Open Street Map': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
-      'Open Cycle Map': L.tileLayer('https://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
-    },
-    overlays: {
-      'Big Circle': L.circle([ 46.95, -122 ], { radius: 5000 }),
-      'Big Square': L.polygon([[ 46.8, -121.55 ], [ 46.9, -121.55 ], [ 46.9, -121.7 ], [ 46.8, -121.7 ]])
-    }
-  }
-  layers = [
-    L.marker([ -22.280849, 166.433937], {
-      icon: L.icon({
-        iconUrl: '../../../assets/marker-icon.png',
-        shadowUrl: '../../../assets/marker-shadow.png',
-      })
-    }).on('click', event => {
-      console.log('Yay, my marker was clicked!', event);
-    }),
-  ];
-  
-  onMarkerClick(e: any) {
-    console.log('Clic sur le marqueur :', e);
-  }
 }
 
 // coordonnées lcvck

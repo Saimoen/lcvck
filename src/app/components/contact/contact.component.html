@@ -1,9 +1,15 @@
-<div style="height: 69vh;"
-     leaflet 
-     [leafletOptions]="options"
-     [leafletLayersControl]="layersControl"
-      [leafletLayers]="layers"
-     (leafletMarkerClick)="onMarkerClick($event)"
-     >
-</div>
-
+<section id="contact">
+     <div class="row">
+       <div class="col-md-12">
+         <div
+           id="map"
+           class="map"
+           style="height: 69vh"
+           leaflet
+           [leafletOptions]="options"
+           [leafletLayers]="this.layers"
+         >
+         </div>
+         </div>
+     </div>
+   </section>
