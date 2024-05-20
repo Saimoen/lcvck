@@ -1,0 +1,31 @@
+[
+    {
+    "id":"1",
+    "title": "Sample Article",
+    "author": "John Doe",
+    "date": "2022-09-15",
+    "content": "This is the content of the article."
+},
+    {
+    "id":"2",
+    "title": "Sample Article",
+    "author": "John Doe",
+    "date": "2022-09-15",
+    "content": "This is the content of the article."
+},
+    {
+    "id":"3",
+    "title": "Sample Article",
+    "author": "John Doe",
+    "date": "2022-09-15",
+    "content": "This is the content of the article."
+},
+    {
+        "id":"4",
+    "title": "Sample Article",
+    "author": "John Doe",
+    "date": "2022-09-15",
+    "content": "This is the content of the article."
+}
+
+]

@@ -4,6 +4,7 @@ import { latLng, tileLayer } from 'leaflet';
 import { LeafletDataService } from '../shared/services/leaflet-data.service';
 import * as L from 'leaflet';
 import { RouterModule } from '@angular/router';
+import { DataService } from '../shared/services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -14,18 +15,21 @@ import { RouterModule } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   public data: any = [];
+  public articles: any = [];
   public markers: L.Marker[] = []; // Array to hold Leaflet markers
   public latitude: number = -22.280849;
   public longitude: number = 166.433937;
   public layers: L.Layer[] = [];
   public map!: L.Map;
 
-  constructor(private leafletDataService: LeafletDataService) {}
+  constructor(
+    private leafletDataService: LeafletDataService,
+    private dataService: DataService
+  ) {}
 
   ngOnInit() {
     this.leafletDataService.getCoordonnees().subscribe((data) => {
       this.data = data;
-      console.log(this.data);
       this.layers = [];
       this.data.forEach((element: any) => {
         const marker = L.marker(
@@ -49,10 +53,9 @@ export class HomeComponent implements OnInit {
                 </div>
               </div>
               `,
-            })            
+            }),
           }
         ).on('click', (event) => {
-
           console.log('Yay, my marker was clicked!', event);
         });
 
