@@ -1,70 +1,52 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-
-export class Login {
-  email: string;
-  password: string;
-
-  constructor() {
-    this.email = "";
-    this.password = "";
-  }
-}
 
 @Component({
   selector: 'app-connexion',
   standalone: true,
-  imports: [FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './connexion.component.html',
-  styleUrl: './connexion.component.scss'
+  styleUrls: ['./connexion.component.scss']
 })
 export class ConnexionComponent {
+  email: string = '';
+  password: string = '';
 
-  public loginObj: Login;
+  constructor(public auth: AngularFireAuth, private router: Router) {}
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.loginObj = new Login();
+  login() {
+    this.auth.signInWithEmailAndPassword(this.email, this.password)
+      .then(userCredential => {
+        // Successfully signed in
+        this.redirectProfil();
+        console.log('Logged in:', userCredential);
+      })
+      .catch(error => {
+        // Handle Errors here.
+        console.error('Login error:', error);
+      });
   }
 
-  onLogin() {
-    debugger;
-    const localUsers =  localStorage.getItem('angular17users');
-    if(localUsers != null) {
-      const users =  JSON.parse(localUsers);
-
-      const isUserPresent =  users.find( (user:SignUpModel)=> user.email == this.loginObj.email && user.password == this.loginObj.password);
-      if(isUserPresent != undefined) {
-        alert("User Found...");
-        localStorage.setItem('loggedUser', JSON.stringify(isUserPresent));
-        this.router.navigateByUrl('/dashboard');
-      } else {
-        alert("No User Found")
-      }
-    }
+  register() {
+    this.auth.createUserWithEmailAndPassword(this.email, this.password)
+      .then(userCredential => {
+        // Successfully registered
+        console.log('Registered:', userCredential);
+      })
+      .catch(error => {
+        // Handle Errors here.
+        console.error('Registration error:', error);
+      });
   }
 
-}
-
-export class SignUpModel  {
-  name: string;
-  email: string;
-  password: string;
-
-  constructor() {
-    this.email = "";
-    this.name = "";
-    this.password= ""
+  logout() {
+    this.auth.signOut();
   }
-}
 
-export class LoginModel  { 
-  email: string;
-  password: string;
-
-  constructor() {
-    this.email = ""; 
-    this.password= ""
+  redirectProfil() {
+    this.router.navigateByUrl('/profil');
   }
 }

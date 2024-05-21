@@ -18,7 +18,5 @@ export const routes: Routes = [
   { path: 'documentaires', component: DocumentairesComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'connexion', component: ConnexionComponent },
-  { path: '', component: HomeComponent, children: [
-    { path: 'profil', component: ProfilComponent, canActivate: [authGuard]}
-  ] },
+  { path: 'profil', component: ProfilComponent },
 ];

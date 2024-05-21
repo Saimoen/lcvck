@@ -1,3 +1,5 @@
+import { ProfilComponent } from './components/auth/profil/profil.component';
+import { ConnexionComponent } from './components/auth/connexion/connexion.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DocumentairesComponent } from './components/documentaires/documentaires.component';
 import { ActualiteComponent } from './components/club/club.component';
@@ -13,12 +15,26 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, NavbarComponent, FooterComponent, AboutComponent, ActualiteComponent, DocumentairesComponent, ContactComponent, RouterLink, NgIf, HttpClientModule],
+  imports: [
+    RouterOutlet,
+    HomeComponent,
+    NavbarComponent,
+    FooterComponent,
+    AboutComponent,
+    ActualiteComponent,
+    DocumentairesComponent,
+    ContactComponent,
+    ConnexionComponent,
+    ProfilComponent,
+    RouterLink,
+    NgIf,
+    HttpClientModule,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  constructor(private router: Router) {} 
+  constructor(private router: Router) {}
   title = 'lcvck';
 
   isHomePage() {
