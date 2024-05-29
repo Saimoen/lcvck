@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-connexion',
@@ -15,13 +16,14 @@ export class ConnexionComponent {
   email: string = '';
   password: string = '';
 
-  constructor(public auth: AngularFireAuth, private router: Router) {}
+  constructor(public auth: AngularFireAuth, private router: Router, private userService: AuthService) {}
 
   login() {
     this.auth.signInWithEmailAndPassword(this.email, this.password)
       .then(userCredential => {
         // Successfully signed in
         this.redirectProfil();
+        this.userService.userSubject.next(userCredential.user);
         console.log('Logged in:', userCredential);
       })
       .catch(error => {

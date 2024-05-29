@@ -1,1 +1,11 @@
-<p>profil works!</p>
+<div *ngIf="user">
+    <h1>Profil</h1>
+    <p>Email: {{ user }}</p>
+    <p>Display Name: {{ user }}</p>
+    <!-- Ajoutez d'autres informations de l'utilisateur ici -->
+  </div>
+  <button (click)="logout()" class="btn btn-primary">Déconnexion</button>
+  <div *ngIf="!user">
+    <p>Utilisateur non connecté.</p>
+  </div>
+  

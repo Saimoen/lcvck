@@ -1,5 +1,21 @@
 <div class="container">
   <a routerLink="/accueil" class="btn btn-primary mt-5">Retour à l'accueil</a>
+  <button class="btn btn-primary mt-5" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" *ngIf="user">Ajouter un article</button>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      <form>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Titre :</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Description :</label>
+          <textarea name="" class="form-control" id=""></textarea>
+        </div>
+        <button type="submit" (click)="addArticle()" class="btn btn-primary">Ajouter</button>
+      </form>
+    </div>
+  </div>
   <h1 class="mt-5">Fil d'actualités :</h1>
   <div class="row mt-5">
     <div class="col-12 d-flex justify-content-between">

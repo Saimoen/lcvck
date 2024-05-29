@@ -10,4 +10,8 @@ export class DataService {
   getArticles() {
     return this.http.get('../../../assets/data/articles.json')
   }
+
+  addArticle(article: any) {
+    return this.http.post('../../../assets/data/articles.json', article)
+  }
 }
