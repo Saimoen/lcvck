@@ -1,4 +1,13 @@
-import { Component } from '@angular/core';
+import {
+  Component
+} from '@angular/core';
+import { Subject } from 'rxjs';
+import { EventColor } from 'calendar-utils';
+import { CommonModule, NgSwitch } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+
+
 
 @Component({
   selector: 'app-about',
@@ -8,5 +17,5 @@ import { Component } from '@angular/core';
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-
+ 
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { DataService } from '../../shared/services/data.service';
 import { NgFor, NgIf } from '@angular/common';
 import firebase from 'firebase/compat/app';
