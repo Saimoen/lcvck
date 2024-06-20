@@ -11,6 +11,7 @@ import { FooterComponent } from './shared/component/footer/footer.component';
 import { AboutComponent } from './components/about/about.component';
 import { NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { EventsComponent } from './components/events/events.component';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     ContactComponent,
     ConnexionComponent,
     ProfilComponent,
+    EventsComponent,
     RouterLink,
     NgIf,
     HttpClientModule,
