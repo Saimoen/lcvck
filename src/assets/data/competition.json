@@ -1,0 +1,81 @@
+[
+{
+    "competition": {
+      "name": "Championnat International de Va'a",
+      "year": 2024,
+      "location": "Tahiti, Polynésie française",
+      "start_date": "2024-07-01",
+      "end_date": "2024-07-10",
+      "teams": [
+        {
+          "id": 1,
+          "name": "Équipe Moana",
+          "coach": "Tama Moana",
+          "paddlers": [
+            { "id": 101, "name": "Paddler A1", "position": "Avant" },
+            { "id": 102, "name": "Paddler A2", "position": "Médian" },
+            { "id": 103, "name": "Paddler A3", "position": "Arrière" }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Équipe Hiva",
+          "coach": "Rangi Hiva",
+          "paddlers": [
+            { "id": 201, "name": "Paddler B1", "position": "Avant" },
+            { "id": 202, "name": "Paddler B2", "position": "Médian" },
+            { "id": 203, "name": "Paddler B3", "position": "Arrière" }
+          ]
+        }
+      ],
+      "races": [
+        {
+          "id": 1,
+          "date": "2024-07-03",
+          "time": "10:00",
+          "distance_km": 10,
+          "teams_participating": [1, 2],
+          "results": {
+            "team1_id": 1,
+            "team1_time": "01:10:00",
+            "team2_id": 2,
+            "team2_time": "01:15:00"
+          },
+          "venue": "Plage de Matavai",
+          "referee": "Arbitre Tane"
+        },
+        {
+          "id": 2,
+          "date": "2024-07-05",
+          "time": "14:00",
+          "distance_km": 15,
+          "teams_participating": [1, 2],
+          "results": {
+            "team1_id": 2,
+            "team1_time": "01:20:00",
+            "team2_id": 1,
+            "team2_time": "01:25:00"
+          },
+          "venue": "Lagon de Bora Bora",
+          "referee": "Arbitre Hina"
+        }
+      ],
+      "standings": [
+        {
+          "team_id": 1,
+          "races_participated": 2,
+          "races_won": 1,
+          "total_time": "02:35:00",
+          "points": 3
+        },
+        {
+          "team_id": 2,
+          "races_participated": 2,
+          "races_won": 1,
+          "total_time": "02:35:00",
+          "points": 3
+        }
+      ]
+    }
+  }
+]

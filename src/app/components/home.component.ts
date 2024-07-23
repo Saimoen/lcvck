@@ -4,7 +4,6 @@ import { latLng, tileLayer } from 'leaflet';
 import { LeafletDataService } from '../shared/services/leaflet-data.service';
 import * as L from 'leaflet';
 import { RouterModule } from '@angular/router';
-import { DataService } from '../shared/services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +23,6 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private leafletDataService: LeafletDataService,
-    private dataService: DataService
   ) {}
 
   ngOnInit() {

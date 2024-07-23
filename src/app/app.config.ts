@@ -10,6 +10,10 @@ import { environment } from '../environments/environment';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { DataService } from './shared/services/data.service';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,7 +31,11 @@ export const appConfig: ApplicationConfig = {
         provide: DateAdapter,
         useFactory: adapterFactory,
       }),
-      FlatpickrModule.forRoot()
+      FlatpickrModule.forRoot(),
+     
     ),
+    importProvidersFrom(
+      HttpClientInMemoryWebApiModule.forRoot(DataService)
+    ), provideAnimationsAsync()
   ],
 };

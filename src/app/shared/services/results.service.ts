@@ -4,12 +4,12 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class LeafletDataService {
+export class ResultsService {
 
   constructor(private http: HttpClient) { }
-  apiUrl = '/api/coordonnees'
+  apiUrl = '/api/resultats'
 
-  getCoordonnees() {
+  getResults() {
     return this.http.get(this.apiUrl)
   }
 }

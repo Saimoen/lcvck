@@ -7,8 +7,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ArticleComponent } from './components/article/article.component';
 import { ConnexionComponent } from './components/auth/connexion/connexion.component';
 import { ProfilComponent } from './components/auth/profil/profil.component';
-import { authGuard } from './shared/services/auth.guard';
 import { EventsComponent } from './components/events/events.component';
+import { ResultComponent } from './components/result/result.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
@@ -17,6 +17,7 @@ export const routes: Routes = [
   { path: 'actualites', component: ActualiteComponent },
   { path: 'actualites/article/:id', component: ArticleComponent },
   { path: 'evenements', component: EventsComponent },
+  { path: 'competitions', component: ResultComponent },
   { path: 'documentaires', component: DocumentairesComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'connexion', component: ConnexionComponent },

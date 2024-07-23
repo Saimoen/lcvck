@@ -1,18 +1,30 @@
 <div class="container">
   <a routerLink="/accueil" class="btn btn-primary mt-5">Retour à l'accueil</a>
-  <button class="btn btn-primary mt-5" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" *ngIf="user">Ajouter un article</button>
+  <button class="btn btn-primary mt-5" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Ajouter un article</button>
   <div class="collapse" id="collapseExample">
     <div class="card card-body">
-      <form>
+      <form [formGroup]="articleForm" (ngSubmit)="addArticle()">
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Auteur :</label>
+          <textarea formControlName="author" class="form-control" id=""></textarea>
+        </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Titre :</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="title">
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Description :</label>
-          <textarea name="" class="form-control" id=""></textarea>
+          <textarea formControlName="content" class="form-control" id=""></textarea>
         </div>
-        <button type="submit" (click)="addArticle()" class="btn btn-primary">Ajouter</button>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Date :</label>
+          <textarea formControlName="date" class="form-control" id=""></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="avatar" class="form-label">Image:</label>
+          <input type="file" formControlName="image" id="avatar"  />
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
       </form>
     </div>
   </div>
