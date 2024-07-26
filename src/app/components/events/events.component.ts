@@ -30,6 +30,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { AuthService } from '../../shared/services/auth.service';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import { RouterLink } from '@angular/router';
 
 
 const colors: Record<string, EventColor> = {
@@ -51,7 +52,7 @@ const colors: Record<string, EventColor> = {
   selector: 'app-events',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CalendarModule, NgSwitch, FormsModule, FlatpickrModule, CommonModule],
+  imports: [CalendarModule, NgSwitch, FormsModule, FlatpickrModule, CommonModule, RouterLink],
   templateUrl: './events.component.html',
   styleUrl: './events.component.scss'
 })
@@ -131,7 +132,7 @@ export class EventsComponent {
     },
   ];
 
-  activeDayIsOpen: boolean = true;
+  activeDayIsOpen: boolean = false;
 
   constructor(private userService: AuthService) {}
 

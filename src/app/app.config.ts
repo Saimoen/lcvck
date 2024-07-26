@@ -1,4 +1,4 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, LOCALE_ID } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
@@ -18,6 +18,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
     provideAnimations(),
     importProvidersFrom(
       HttpClientModule,

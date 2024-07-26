@@ -1,4 +1,4 @@
-<div *ngFor="let result of results">
+<div class="container" *ngFor="let result of results">
     <div class="container">
         <h3 class="text-center">{{ result.course }}</h3>
     </div>
@@ -6,25 +6,26 @@
 <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
+        <th scope="col">Position</th>
+        <th scope="col">Dossard</th>
+        <th scope="col">Numéro</th>
+        <th scope="col">Équipage</th>
+        <th scope="col">Catégorie</th>
+        <th scope="col">Noms</th>
+        <th scope="col">Temps</th>
+        <th scope="col">Écart</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let classement of result.classement; let i">
       <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
+        <th scope="row">{{ classement.position }}</th>
+        <td>{{ classement.dossard }}</td>
+        <td>{{ classement.num }}</td>
+        <td>{{ classement.equipage }}</td>
+        <td>{{ classement.categorie }}</td>
+        <td>{{ classement.noms[i] }}</td>
+        <td>{{ classement.temps }}</td>
+        <td>{{ classement.ecart }}</td>
       </tr>
     </tbody>
   </table>
