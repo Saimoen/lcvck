@@ -1,4 +1,8 @@
-import { ApplicationConfig, importProvidersFrom, LOCALE_ID } from '@angular/core';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  LOCALE_ID,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
@@ -26,17 +30,16 @@ export const appConfig: ApplicationConfig = {
     ),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
+    provideStorage(() => getStorage()),
     provideHttpClient(),
     importProvidersFrom(
       CalendarModule.forRoot({
         provide: DateAdapter,
         useFactory: adapterFactory,
       }),
-      FlatpickrModule.forRoot(),
-     
+      FlatpickrModule.forRoot()
     ),
-    importProvidersFrom(
-      HttpClientInMemoryWebApiModule.forRoot(DataService)
-    ), provideAnimationsAsync()
+    importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(DataService)),
+    provideAnimationsAsync(),
   ],
 };

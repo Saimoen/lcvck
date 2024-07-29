@@ -22,7 +22,7 @@
         </div>
         <div class="mb-3">
           <label for="avatar" class="form-label">Image:</label>
-          <input type="file" formControlName="image" id="avatar"  />
+          <input type="file" (change)="changeInput($event)" formControlName="image" id="avatar"  />
         </div>
         <button type="submit" class="btn btn-primary">Ajouter</button>
       </form>
@@ -49,4 +49,21 @@
       </div>
     </div>
   </div>
+  <div class="fb-page mt-5"
+    style="width: 100%;" 
+     data-href="https://www.facebook.com/facebook"
+     data-tabs="timeline"
+     data-width="150000"
+     data-height="1500"
+     data-small-header="false"
+     data-adapt-container-width="true"
+     data-hide-cover="false"
+     data-show-facepile="true">
+   <blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore">
+     <a href="https://www.facebook.com/facebook">Facebook</a>
+   </blockquote>
 </div>
+
+
+</div>
+
