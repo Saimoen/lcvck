@@ -1,9 +1,10 @@
-<div class="row text-center">
-  <div class="col-md-4">
-    <div class="px-5">
-      <a class="btn btn-primary" routerLink="/accueil">Retour à l'accueil</a>
-    </div>
-      
+<div class="row">
+  <div class="px-5 mt-5">
+    <a class="btn btn-primary" routerLink="/accueil">Retour à l'accueil</a>
+  </div>
+</div>
+<div class="row text-center mt-5 py-5">
+  <div class="col-md-4">      
     <div class="btn-group">
       <div
         class="btn btn-primary"
@@ -99,9 +100,9 @@
 <br /><br /><br />
 
 <h3 *ngIf="user">
-  Edit events
+  Editer les évènements
   <button class="btn btn-primary float-end" (click)="addEvent()">
-    Add new
+    Ajouter
   </button>
   <div class="clearfix"></div>
 </h3>
@@ -110,12 +111,12 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Primary color</th>
-        <th>Secondary + text color</th>
-        <th>Starts at</th>
-        <th>Ends at</th>
-        <th>Remove</th>
+        <th>Titre</th>
+        <th>Couleur primaire</th>
+        <th>Couleur secondaire + couleur du texte</th>
+        <th>Débute le</th>
+        <th>Fini le</th>
+        <th>Supprimer</th>
       </tr>
     </thead>
 
@@ -181,7 +182,7 @@
         </td>
         <td>
           <button class="btn btn-danger" (click)="deleteEvent(event)">
-            Delete
+            Supprimer
           </button>
         </td>
       </tr>
@@ -202,7 +203,7 @@
       <pre>{{ modalData?.action }}</pre>
     </div>
     <div>
-      Event:
+      Evenement:
       <pre>{{ modalData?.event | json }}</pre>
     </div>
   </div>

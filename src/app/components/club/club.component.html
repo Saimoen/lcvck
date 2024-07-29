@@ -1,12 +1,14 @@
 <div class="container">
-  <a routerLink="/accueil" class="btn btn-primary mt-5">Retour à l'accueil</a>
-  <button class="btn btn-primary mt-5" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Ajouter un article</button>
-  <div class="collapse" id="collapseExample">
-    <div class="card card-body">
+  <div class="d-flex justify-content-between">
+    <a routerLink="/accueil" class="btn btn-primary mt-5">Retour à l'accueil</a>
+    <button class="btn btn-primary mt-5 " data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Ajouter un article</button>
+  </div>
+  <div class="collapse mt-5 w-75 mx-5" id="collapseExample">
+    <div class="card card-body mx-5">
       <form [formGroup]="articleForm" (ngSubmit)="addArticle()">
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Auteur :</label>
-          <textarea formControlName="author" class="form-control" id=""></textarea>
+          <input type="text" formControlName="author" class="form-control" id="">
         </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Titre :</label>
@@ -22,7 +24,7 @@
         </div>
         <div class="mb-3">
           <label for="avatar" class="form-label">Image:</label>
-          <input type="file" formControlName="image" id="avatar"  />
+          <input type="file" (change)="changeInput($event)" formControlName="image" id="avatar"  />
         </div>
         <button type="submit" class="btn btn-primary">Ajouter</button>
       </form>
@@ -49,4 +51,21 @@
       </div>
     </div>
   </div>
+  <div class="fb-page mt-5"
+    style="width: 100%;" 
+     data-href="https://www.facebook.com/facebook"
+     data-tabs="timeline"
+     data-width="150000"
+     data-height="1500"
+     data-small-header="false"
+     data-adapt-container-width="true"
+     data-hide-cover="false"
+     data-show-facepile="true">
+   <blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore">
+     <a href="https://www.facebook.com/facebook">Facebook</a>
+   </blockquote>
 </div>
+
+
+</div>
+

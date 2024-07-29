@@ -1,11 +1,11 @@
-<div *ngIf="user">
+<div class="container" *ngIf="user">
     <h1>Profil</h1>
-    <p>Email: {{ user }}</p>
-    <p>Display Name: {{ user }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Numéro de téléphone : {{ user.phoneNumber }}</p>
     <!-- Ajoutez d'autres informations de l'utilisateur ici -->
-  </div>
-  <button (click)="logout()" class="btn btn-primary">Déconnexion</button>
-  <div *ngIf="!user">
-    <p>Utilisateur non connecté.</p>
+    <button (click)="logout()" class="btn btn-primary">Déconnexion</button>
+    <div *ngIf="!user">
+      <p>Utilisateur non connecté.</p>
+    </div>
   </div>
   

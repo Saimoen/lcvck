@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { AuthService } from '../../shared/services/auth.service';
 import { ArticlesService } from '../../shared/services/articles.service';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Observable } from 'rxjs';
+import { ref, Storage, percentage } from '@angular/fire/storage';
+import { uploadBytesResumable } from 'firebase/storage';
 
 @Component({
   selector: 'app-club',
@@ -21,6 +28,10 @@ export class ActualiteComponent {
   currentFile?: File;
   message = '';
   preview = '';
+  file!: File;
+  progress = signal(0);
+
+  private readonly _storage = inject(Storage);
 
   imageInfos?: Observable<any>;
 
@@ -36,7 +47,7 @@ export class ActualiteComponent {
     title: this.builder.control('', Validators.required),
     content: this.builder.control('', Validators.required),
     image: this.builder.control('', Validators.required),
-  })
+  });
 
   ngOnInit() {
     this.getArticles();
@@ -45,6 +56,13 @@ export class ActualiteComponent {
       this.user = user;
       console.log('User:', user);
     });
+
+    (window as any).fbAsyncInit = function () {
+      (window as any).FB.init({
+        xfbml: true,
+        version: 'v10.0',
+      });
+    };
   }
 
   getArticles() {
@@ -61,12 +79,26 @@ export class ActualiteComponent {
       title: this.articleForm.value.title as string,
       content: this.articleForm.value.content as string,
       image: this.articleForm.value.image,
-    }
-    this.articlesService
-      .addArticle(_obj)
-      .subscribe((data) => {
-        this.getArticles();
-      });
+    };
+    this.articlesService.addArticle(_obj).subscribe((data) => {
+      this.getArticles();
+    });
   }
 
+  changeInput(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    console.log('inputElement:', this._storage);
+    if (inputElement.files) {
+      this.file = inputElement.files![0];
+      this.uploadFile();
+    }
+  }
+
+  uploadFile(): void {
+    const storageRef = ref(this._storage, `upload/${this.file.name}`);
+    const task = uploadBytesResumable(storageRef, this.file);
+    percentage(task).subscribe((percentage) => {
+      console.log(`Uploading: ${percentage}%`);
+  });
+}
 }
