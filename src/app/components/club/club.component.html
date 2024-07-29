@@ -1,12 +1,14 @@
 <div class="container">
-  <a routerLink="/accueil" class="btn btn-primary mt-5">Retour à l'accueil</a>
-  <button class="btn btn-primary mt-5" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Ajouter un article</button>
-  <div class="collapse" id="collapseExample">
-    <div class="card card-body">
+  <div class="d-flex justify-content-between">
+    <a routerLink="/accueil" class="btn btn-primary mt-5">Retour à l'accueil</a>
+    <button class="btn btn-primary mt-5 " data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Ajouter un article</button>
+  </div>
+  <div class="collapse mt-5 w-75 mx-5" id="collapseExample">
+    <div class="card card-body mx-5">
       <form [formGroup]="articleForm" (ngSubmit)="addArticle()">
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Auteur :</label>
-          <textarea formControlName="author" class="form-control" id=""></textarea>
+          <input type="text" formControlName="author" class="form-control" id="">
         </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Titre :</label>
