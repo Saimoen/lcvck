@@ -3,36 +3,37 @@
     <a routerLink="/accueil" class="btn btn-primary mt-5">Retour à l'accueil</a>
     <button class="btn btn-primary mt-5 " data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Ajouter un article</button>
   </div>
-  <div class="collapse mt-5 w-75 mx-5" id="collapseExample">
-    <div class="card card-body mx-5">
-      <form [formGroup]="articleForm" (ngSubmit)="addArticle()">
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Auteur :</label>
-          <input type="text" formControlName="author" class="form-control" id="">
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Titre :</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="title">
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Description :</label>
-          <textarea formControlName="content" class="form-control" id=""></textarea>
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Date :</label>
-          <textarea formControlName="date" class="form-control" id=""></textarea>
-        </div>
-        <div class="mb-3">
-          <label for="avatar" class="form-label">Image:</label>
-          <input type="file" (change)="changeInput($event)" formControlName="image" id="avatar"  />
-        </div>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
-      </form>
+  <div class="d-flex justify-content-center">
+  <div class="collapse mt-5 w-75" id="collapseExample">
+      <div class="card card-body mx-5">
+        <form [formGroup]="articleForm" (ngSubmit)="addArticle()">
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Auteur :</label>
+            <input type="text" formControlName="author" class="form-control" id="">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Titre :</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="title">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Description :</label>
+            <textarea formControlName="content" class="form-control" id=""></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Date :</label>
+            <textarea formControlName="date" class="form-control" id=""></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="avatar" class="form-label">Image:</label>
+            <input type="file" (change)="changeInput($event)" formControlName="image" id="avatar"  />
+          </div>
+          <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
+      </div>
     </div>
   </div>
   <h1 class="mt-5">Fil d'actualités :</h1>
-  <div class="row mt-5">
-    <div class="col-12 d-flex justify-content-between">
+    <div class="col-12 d-flex justify-content-between" >
       <div class="card" style="width: 18rem" *ngFor="let article of articles">
         <img
           src="../../../../assets/img/actualite1.jpg"
@@ -49,7 +50,7 @@
           >
         </div>
       </div>
-    </div>
+
   </div>
   <div class="fb-page mt-5"
     style="width: 100%;" 
