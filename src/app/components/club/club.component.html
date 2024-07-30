@@ -36,13 +36,13 @@
     <div class="col-12 d-flex justify-content-between" >
       <div class="card" style="width: 18rem" *ngFor="let article of articles">
         <img
-          src="../../../../assets/img/actualite1.jpg"
+          src="{{ article.image }}"
           class="card-img-top"
           alt="..."
         />
         <div class="card-body">
+          <!-- VOIR LE ROUTING !!! ARTI -->
           <h5 class="card-title">{{ article.title }}</h5>
-          <p class="card-text">{{ article.content }}</p>
           <a
             routerLink="/actualites/article/{{article.id}}"
             class="btn btn-primary"

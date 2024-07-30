@@ -46,6 +46,10 @@ const colors: Record<string, EventColor> = {
     primary: '#e3bc08',
     secondary: '#FDF1BA',
   },
+  green: {
+    primary: '#00b09b',
+    secondary: '#96c93d',
+  },
 };
 
 @Component({
@@ -74,14 +78,14 @@ export class EventsComponent {
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-      a11yLabel: 'Edit',
+      a11yLabel: 'Editer',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.handleEvent('Edited', event);
       },
     },
     {
       label: '<i class="fas fa-fw fa-trash-alt"></i>',
-      a11yLabel: 'Delete',
+      a11yLabel: 'Supprimer',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter((iEvent) => iEvent !== event);
         this.handleEvent('Deleted', event);
@@ -93,9 +97,9 @@ export class EventsComponent {
 
   events: CalendarEvent[] = [
     {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
+      start: subDays(startOfDay(new Date('August 13, 2024 00:00:00')), 1),
+      end: addDays(new Date('August 24, 2024 00:00:00'), 1),
+      title: 'Championnat du monde',
       color: { ...colors['red'] },
       actions: this.actions,
       allDay: true,
@@ -106,24 +110,38 @@ export class EventsComponent {
       draggable: true,
     },
     {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: { ...colors['yellow'] },
-      actions: this.actions,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
+      start: subDays(startOfDay(new Date('August 4, 2024 08:30:00')), 1),
+      end: addDays(new Date('August 4'), 1),
+      title: 'V1 - Fête du nautisme - 7km/14km - Koumac - V.C.M.H',
       color: { ...colors['blue'] },
+      actions: this.actions,
       allDay: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true,
+      },
+      draggable: true,
     },
     {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
+      start: subDays(startOfDay(new Date('August 11, 2024 08:30:00')), 1),
+      end: addDays(new Date('August 11'), 1),
+      title: 'V1 - Championnat - Vitesse - U16 - L.C.V.C.K',
       color: { ...colors['yellow'] },
       actions: this.actions,
+      allDay: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true,
+      },
+      draggable: true,
+    },
+    {
+      start: subDays(startOfDay(new Date('September 1, 2024 08:30:00')), 1),
+      end: addDays(new Date('August 31'), 1),
+      title: 'K1/OC1 - Championnat - Marathon - Toutes - L.C.V.C.K',
+      color: { ...colors['green'] },
+      actions: this.actions,
+      allDay: true,
       resizable: {
         beforeStart: true,
         afterEnd: true,

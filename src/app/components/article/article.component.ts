@@ -19,7 +19,9 @@ export class ArticleComponent  implements OnInit {
       const articleId = params['id'];
       this.articlesService.getArticle(articleId).subscribe((data) => {
         data.forEach((article) => {
-          this.article = article;
+          if(article.id === articleId){
+            this.article = article;
+          }
         });
       });
     });
