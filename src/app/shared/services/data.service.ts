@@ -72,6 +72,7 @@ export class DataService implements InMemoryDbService {
       ],
       resultats: [
         {
+          "date": "2024-02-21",
           "course": "Scratch Course 1 (14 km)",
           "classement": [
             {
@@ -167,6 +168,7 @@ export class DataService implements InMemoryDbService {
           ]
         },
         {
+          "date": "2024-06-13",
           "course": "Junior 16 (14 km)",
           "classement": [
             {
@@ -182,6 +184,7 @@ export class DataService implements InMemoryDbService {
           ]
         },
         {
+          "date": "2023-05-05",
           "course": "Open Dames (14 km)",
           "classement": [
             {

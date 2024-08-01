@@ -1,11 +1,11 @@
 <div class="container">
   <div class="d-flex justify-content-between">
     <a routerLink="/accueil" class="btn btn-primary mt-5">Retour à l'accueil</a>
-    <button class="btn btn-primary mt-5 " data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Ajouter un article</button>
+    <button class="btn btn-primary mt-5 " data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" *ngIf="user">Ajouter un article</button>
   </div>
   <div class="d-flex justify-content-center">
   <div class="collapse mt-5 w-75" id="collapseExample">
-      <div class="card card-body mx-5">
+      <div class="card shadow card-body mx-5">
         <form [formGroup]="articleForm" (ngSubmit)="addArticle()">
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Auteur :</label>
@@ -34,20 +34,19 @@
   </div>
   <h1 class="mt-5">Fil d'actualités :</h1>
     <div class="col-12 d-flex justify-content-between" >
-      <div class="card" style="width: 18rem" *ngFor="let article of articles">
+      <div class="card shadow" style="width: 18rem" *ngFor="let article of articles">
         <img
           src="{{ article.image }}"
           class="card-img-top"
           alt="..."
         />
         <div class="card-body">
-          <!-- VOIR LE ROUTING !!! ARTI -->
           <h5 class="card-title">{{ article.title }}</h5>
-          <a
-            routerLink="/actualites/article/{{article.id}}"
-            class="btn btn-primary"
-            >Voir plus</a
-          >
+            <a
+              routerLink="/actualites/article/{{article.id}}"
+              class="btn btn-primary"
+              >Voir plus</a
+            >
         </div>
       </div>
 

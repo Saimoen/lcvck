@@ -1,37 +1,53 @@
-<div class="container" *ngFor="let result of results">
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <a routerLink="/accueil" class="btn btn-primary mt-5">Retour à l'accueil</a>
+    <button class="btn btn-primary mt-5 " data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Ajouter un article</button>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <select class="form-select" (change)="selectChange($event)" aria-label="">
+    <option selected>Trier par année :</option>
+    <option value="2024">2024</option>
+    <option value="2023">2023</option>
+    <option value="2022">2022</option>
+  </select>
+</div>
+
+<section *ngIf="visible" class="py-5">
+  <div class="container" *ngFor="let result of filteredResults">
+    <h3 class="text-center">{{ result.date | date:'fullDate' }}</h3>
     <div class="container">
-        <h3 class="text-center">{{ result.course }}</h3>
+      <h3 class="text-center">{{ result.course }}</h3>
     </div>
 
     <div class="table-responsive">
       <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Position</th>
-              <th scope="col">Dossard</th>
-              <th scope="col">Numéro</th>
-              <th scope="col">Équipage</th>
-              <th scope="col">Catégorie</th>
-              <th scope="col">Noms</th>
-              <th scope="col">Temps</th>
-              <th scope="col">Écart</th>
-            </tr>
-          </thead>
-          <tbody *ngFor="let classement of result.classement; let i">
-            <tr>
-              <th scope="row">{{ classement.position }}</th>
-              <td>{{ classement.dossard }}</td>
-              <td>{{ classement.num }}</td>
-              <td>{{ classement.equipage }}</td>
-              <td>{{ classement.categorie }}</td>
-              <td>{{ classement.noms[i] }}</td>
-              <td>{{ classement.temps }}</td>
-              <td>{{ classement.ecart }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <thead>
+          <tr>
+            <th scope="col">Position</th>
+            <th scope="col">Dossard</th>
+            <th scope="col">Numéro</th>
+            <th scope="col">Équipage</th>
+            <th scope="col">Catégorie</th>
+            <th scope="col">Noms</th>
+            <th scope="col">Temps</th>
+            <th scope="col">Écart</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let classement of result.classement; let i = index">
+          <tr>
+            <th scope="row">{{ classement.position }}</th>
+            <td>{{ classement.dossard }}</td>
+            <td>{{ classement.num }}</td>
+            <td>{{ classement.equipage }}</td>
+            <td>{{ classement.categorie }}</td>
+            <td>{{ classement.noms[i] }}</td>
+            <td>{{ classement.temps }}</td>
+            <td>{{ classement.ecart }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-
-
-</div>
+  </div>
+</section>
