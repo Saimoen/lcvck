@@ -7,7 +7,7 @@
 }
 
 // Variable overrides first
-$primary: #900;
+$primary: #DC281E;
 $enable-shadows: true;
 $prefix: "mo-";
 
@@ -15,7 +15,7 @@ $prefix: "mo-";
 @import "../node_modules/bootstrap/scss/functions";
 
 // Variable overrides second
-$primary: #900;
+$primary: #DC281E;
 $enable-shadows: true;
 $prefix: "mo-";
 
@@ -40,6 +40,26 @@ $prefix: "mo-";
 @import "../node_modules/leaflet/dist/leaflet.css";
 
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+@font-face {
+  font-family: 'Abnes';
+  src: url('./assets/fonts/abnes/abnes.otf') format('trueType');
+}
+
+@font-face {
+  font-family: 'LibreRegular';
+  src: url('./assets/fonts/libre/LibreBaskerville-Regular.ttf') format('trueType');
+}
+
+@font-face {
+  font-family: 'LibreBold';
+  src: url('./assets/fonts/libre/LibreBaskerville-Bold.ttf') format('trueType');
+}
+
+@font-face {
+  font-family: 'LibreItalic';
+  src: url('./assets/fonts/libre/LibreBaskerville-Italic.ttf') format('trueType');
+}
 
 ul {
   list-style-type: none;
@@ -67,6 +87,38 @@ html, body {
 
 a {
   text-decoration: none;
+}
+
+.abnes {
+  font-family: 'Abnes';
+}
+
+.libre-bold {
+  font-family: 'LibreBold';
+}
+
+.libreRegular {
+  font-family: 'LibreRegular';
+}
+
+.background {
+  position: relative;
+  z-index: 0;
+}
+
+.background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./assets/img/motifs_polynesiens.png');
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center;
+  opacity: 0.1;
+  z-index: -1; /* Place the background behind the content */
 }
 
 

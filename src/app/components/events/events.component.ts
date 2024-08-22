@@ -31,6 +31,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { RouterLink } from '@angular/router';
+import { EventsService } from '../../shared/services/events.service';
 
 
 const colors: Record<string, EventColor> = {
@@ -95,70 +96,26 @@ export class EventsComponent {
 
   refresh = new Subject<void>();
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date('August 13, 2024 00:00:00')), 1),
-      end: addDays(new Date('August 24, 2024 00:00:00'), 1),
-      title: 'Championnat du monde',
-      color: { ...colors['red'] },
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      start: subDays(startOfDay(new Date('August 4, 2024 08:30:00')), 1),
-      end: addDays(new Date('August 4'), 1),
-      title: 'V1 - Fête du nautisme - 7km/14km - Koumac - V.C.M.H',
-      color: { ...colors['blue'] },
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      start: subDays(startOfDay(new Date('August 11, 2024 08:30:00')), 1),
-      end: addDays(new Date('August 11'), 1),
-      title: 'V1 - Championnat - Vitesse - U16 - L.C.V.C.K',
-      color: { ...colors['yellow'] },
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      start: subDays(startOfDay(new Date('September 1, 2024 08:30:00')), 1),
-      end: addDays(new Date('August 31'), 1),
-      title: 'K1/OC1 - Championnat - Marathon - Toutes - L.C.V.C.K',
-      color: { ...colors['green'] },
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-  ];
+  eventData?: any[];
+
+  events: CalendarEvent[] = [];
 
   activeDayIsOpen: boolean = false;
 
-  constructor(private userService: AuthService) {}
+  constructor(private userService: AuthService, private eventService: EventsService) {}
 
   ngOnInit() {
     window.scrollTo(0, 0);
     this.userService.user$.subscribe((user) => {
       this.user = user;
       console.log('User:', user);
+    });
+
+    // retrieve events from the database
+    this.eventService.getEvents().subscribe((events: any) => {
+      this.eventData = events;
+      console.log('Events:', events);
+      this.events = events; 
     });
   }
 

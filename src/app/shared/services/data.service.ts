@@ -239,7 +239,46 @@ export class DataService implements InMemoryDbService {
             }
           ]
         }
-      ]
+      ],
+"events": [
+    {
+        "start": new Date('August 13, 2024 00:00:00'),
+        "end": new Date('August 24, 2024 00:00:00'),
+        "title": "Championnat du monde",
+        "color": "#ad2121",
+        "allDay": true,
+        "resizable": true,
+        "draggable": true,
+    },
+    {
+        "start": new Date('September 1, 2024 00:00:00'),
+        "end": new Date('September 7, 2024 00:00:00'),
+        "title": "Conférence internationale",
+        "color": "#4285f4",
+        "allDay": true,
+        "resizable": true,
+        "draggable": true,
+    },
+    {
+        "start": new Date('October 15, 2024 00:00:00'),
+        "end": new Date('October 20, 2024 00:00:00'),
+        "title": "Salon professionnel",
+        "color": "#f4b442",
+        "allDay": true,
+        "resizable": true,
+        "draggable": true,
+    },
+    {
+        "start": new Date('November 5, 2024 00:00:00'),
+        "end": new Date('November 12, 2024 00:00:00'),
+        "title": "Formation en ligne",
+        "color": "#db44f4",
+        "allDay": true,
+        "resizable": true,
+        "draggable": true,
+    }
+]
+
     };
   }
 }
