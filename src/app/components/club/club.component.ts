@@ -80,7 +80,7 @@ export class ActualiteComponent {
       content: this.articleForm.value.content as string,
       image: this.articleForm.value.image,
     };
-    this.articlesService.addArticle(_obj).subscribe((data) => {
+    this.articlesService.createArticle(_obj).then((data) => {
       this.getArticles();
     });
   }

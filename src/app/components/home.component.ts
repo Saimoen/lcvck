@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { latLng, tileLayer } from 'leaflet';
 import { LeafletDataService } from '../shared/services/leaflet-data.service';
 import * as L from 'leaflet';
 import { RouterModule } from '@angular/router';
+import { FirestoreService } from '../shared/services/firestore.service';
+import { collection, CollectionReference, Firestore } from '@angular/fire/firestore';
+import { getDocs } from 'firebase/firestore';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +16,11 @@ import { RouterModule } from '@angular/router';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
+
+firestore = inject(Firestore);
+contactsCollection = collection(this.firestore, 'contacts') as CollectionReference<any>;
+contacts = signal<any[]>([]);
+
   public data: any = [];
   public articles: any = [];
   public markers: L.Marker[] = []; // Array to hold Leaflet markers
@@ -23,6 +31,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private leafletDataService: LeafletDataService,
+    private fireStoreService: FirestoreService,
   ) {}
 
   ngOnInit() {
@@ -72,4 +81,15 @@ export class HomeComponent implements OnInit {
     zoom: 16,
     center: latLng(-22.280849, 166.433937),
   };
+
+    async createUser() {
+    this.fireStoreService.createUser();
+  }
+
+  async fetchContacts() {
+    const data = await getDocs(this.contactsCollection);
+    this.contacts.set([...data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))]);
+  }
+
+
 }

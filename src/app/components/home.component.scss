@@ -1,77 +1,152 @@
-  .title-presentation {
-    font-size: 2.5rem;
-    font-weight: 300;
-    color: red;
-    text-align: center;
-    margin-top: 2rem;
-  }
-  
-  .background {
-    position: relative;
-    z-index: 0;
-  }
+.title-presentation {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: red;
+  text-align: center;
+  margin-top: 2rem;
+}
 
-  .background::before {
-    content: '';
+.background {
+  position: relative;
+  z-index: 0;
+}
+
+.background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/img/motifs_polynesiens.png");
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center;
+  opacity: 0.1;
+  z-index: -1; /* Place the background behind the content */
+}
+
+.test {
+  width: 69vh;
+  height: 100%;
+  background-image: url("../../assets/img/femme-vaa.png");
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.test-1 {
+  width: 69vh;
+  height: 100%;
+  background-image: url("../../assets/img/pirogue-sport.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+.featurette-divider {
+  margin: 5rem 0;
+}
+
+.featurette-heading {
+  letter-spacing: -0.05rem;
+}
+
+.caroussel {
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/img/IMG_6800.AVIF");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1;
+  z-index: 1; /* Place the background behind the content */
+}
+
+.custom-icon img {
+  width: 25px; /* Ajustez selon vos besoins */
+  height: 41px; /* Ajustez selon vos besoins */
+  display: block;
+}
+
+.intro {
+  position: relative;
+}
+
+.section-heading {
+  text-transform: uppercase;
+}
+.section-heading .section-heading-upper {
+  display: block;
+  font-size: 1rem;
+  font-weight: 800;
+}
+.section-heading .section-heading-lower {
+  display: block;
+  font-size: 3rem;
+  font-weight: 100;
+}
+
+.bg-faded {
+  background-color: red;
+}
+
+@media (min-width: 992px) {
+  .intro-2 .intro-img-1 {
+    width: 75%;
+    float: left; /* Changez à gauche pour cette variante */
+  }
+  .intro-2 .intro-text-1 {
+    right: 0; /* Positionne le texte à droite */
+    width: 60%;
+    margin-top: 3rem;
     position: absolute;
-    top: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .intro .intro-img {
+    width: 75%;
+    float: right;
+  }
+  .intro-1 .intro-text-1 {
+    width: 40%;
+    float: left;
+    margin-top: 3rem;
+  }
+  .intro .intro-text {
     left: 0;
+    width: 60%;
+    margin-top: 3rem;
+    position: absolute;
+  }
+  .intro .intro-text .intro-button {
     width: 100%;
-    height: 100%;
-    background-image: url('../../assets/img/motifs_polynesiens.png');
-    background-size: cover;
-    background-repeat: repeat;
-    background-position: center;
-    opacity: 0.1;
-    z-index: -1; /* Place the background behind the content */
+    left: 0;
+    position: absolute;
+    bottom: -2rem;
   }
+}
 
-  main {
-    position: relative;
-    z-index: 1;
+@media screen and (max-width: 768px) {
+  .jumbotron {
+    display: none;
   }
+}
 
-  .featurette-divider {
-    margin: 5rem 0;
-  }
-  
+@media (min-width: 40em) {
   .featurette-heading {
-    letter-spacing: -.05rem;
+    font-size: 50px;
   }
+}
 
-  .caroussel {
-    width: 100%;
-    height: 100%;
-    background-image: url('../../assets/img/IMG_6800.AVIF');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 1;
-    z-index: 1; /* Place the background behind the content */
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 7rem;
   }
-
-  .custom-icon img {
-    width: 25px;  /* Ajustez selon vos besoins */
-    height: 41px; /* Ajustez selon vos besoins */
-    display: block;
-  }
-  
-
-  @media screen and (max-width: 768px) {
-    .jumbotron {
-      display: none;
-    }
-    
-  }
-
-  @media (min-width: 40em) {
-    .featurette-heading {
-      font-size: 50px;
-    }
-  }
-  
-  @media (min-width: 62em) {
-    .featurette-heading {
-      margin-top: 7rem;
-    }
-  }
+}
