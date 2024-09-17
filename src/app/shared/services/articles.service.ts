@@ -11,7 +11,11 @@ import { db } from '../../../environments/environment';
 export class ArticlesService {
 
   constructor(private http: HttpClient) { }
-  apiUrl: string = 'api/articles/';
+  apiUrl: string = 'api/club/';
+
+  getClub() {
+    return this.http.get(this.apiUrl);
+  }
 
   getArticles() {
     return this.http.get<Article[]>(this.apiUrl)

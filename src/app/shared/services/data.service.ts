@@ -240,7 +240,7 @@ export class DataService implements InMemoryDbService {
           ]
         }
       ],
-"events": [
+events: [
     {
         "start": new Date('August 13, 2024 00:00:00'),
         "end": new Date('August 24, 2024 00:00:00'),
@@ -277,8 +277,40 @@ export class DataService implements InMemoryDbService {
         "resizable": true,
         "draggable": true,
     }
+],
+club: [
+  {
+      image: '../../../assets/img/as-karame.jpg',
+      mail: 'askarapauga@hotmail.fr',
+      telephone: '75 73 74/ 76 05 06',
+      titre: 'As Kara Rame',
+      adresse: 'Baie de Toro, Plage Toro, Païta, Province Sud, Nouvelle-Calédonie',
+      latitude: -22.202141,
+      longitude: 166.356593,
+      lien: 'https://www.facebook.com/askara.rame?locale=fr_FR',
+      province: 'Sud',
+  },
+  {
+      image: "../../../assets/img/ASPTTVA'A.jpg",
+      mail: 'ptt.secretariat@gmail.com',
+      titre: "ASPTT Nouméa - Section va'a",
+      telephone: '93 41 95',
+      adresse: "Pointe de l'Artillerie, Rue des Artifice Artillerie, Nouméa, Province Sud, Nouvelle-Calédonie",
+      latitude: -22.27935,
+      longitude: 166.44048,
+      lien: 'https://pttsecretariat.wixsite.com/website',
+      province: 'Sud',
+  },
+  {
+      image: "../../../assets/img/olympique.jpg",
+      titre: "Olympique VA'A Outrigger NC Entraînement",
+      adresse: '1 BIS Route des Artifices',
+      latitude: -22.28112,
+      longitude: 166.4335,
+      lien: 'https://www.facebook.com/OlympiqueVaa/?locale=fr_FR',
+      province: 'Sud',
+  },
 ]
-
     };
   }
 }
