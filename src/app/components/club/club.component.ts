@@ -73,6 +73,7 @@ export class ActualiteComponent {
   public map!: L.Map;
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.articlesService.getClub().subscribe((data: any) => {
       this.data = data;
       console.log(this.data);

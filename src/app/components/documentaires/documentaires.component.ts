@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-documentaires',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
   templateUrl: './documentaires.component.html',
   styleUrl: './documentaires.component.scss'
 })
-export class DocumentairesComponent {
-
+export class DocumentairesComponent implements OnInit {
+  ngOnInit() {
+    window.scrollTo(0, 0);
+  }
 }

@@ -21,6 +21,7 @@ export class ContactComponent {
   constructor(private leafletDataService: LeafletDataService) {}
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.leafletDataService.getCoordonnees().subscribe((data: any) => {
       this.data = data;
       console.log(this.data);
