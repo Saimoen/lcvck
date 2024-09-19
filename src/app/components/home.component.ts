@@ -7,11 +7,12 @@ import { RouterModule } from '@angular/router';
 import { FirestoreService } from '../shared/services/firestore.service';
 import { collection, CollectionReference, Firestore } from '@angular/fire/firestore';
 import { getDocs } from 'firebase/firestore';
+import { BackToTopComponent } from '../shared/component/back-to-top/back-to-top.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [LeafletModule, RouterModule],
+  imports: [LeafletModule, RouterModule, BackToTopComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

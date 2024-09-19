@@ -1,0 +1,20 @@
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: block; /* Toujours présent, sera masqué via Angular avec *ngIf */
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  
+  .back-to-top:hover {
+    background-color: #c9302c;
+  }
+  

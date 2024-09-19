@@ -45,13 +45,6 @@ export class ActualiteComponent {
     private leafletDataService: LeafletDataService
   ) {}
 
-  articleForm = this.builder.group({
-    date: this.builder.control('', Validators.required),
-    author: this.builder.control('', Validators.required),
-    title: this.builder.control('', Validators.required),
-    content: this.builder.control('', Validators.required),
-    image: this.builder.control('', Validators.required),
-  });
 
   
   options = {
@@ -103,43 +96,9 @@ export class ActualiteComponent {
     });
   }
 
-
-
-
   getArticles() {
     this.articlesService.getArticles().subscribe((data) => {
       this.articles = data;
     });
   }
-
-  addArticle() {
-    let _obj: any = {
-      id: (this.articles.length + 1).toString() as string,
-      author: this.articleForm.value.author as string,
-      date: this.articleForm.value.date as string,
-      title: this.articleForm.value.title as string,
-      content: this.articleForm.value.content as string,
-      image: this.articleForm.value.image,
-    };
-    this.articlesService.createArticle(_obj).then((data) => {
-      this.getArticles();
-    });
-  }
-
-  changeInput(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    console.log('inputElement:', this._storage);
-    if (inputElement.files) {
-      this.file = inputElement.files![0];
-      this.uploadFile();
-    }
-  }
-
-  uploadFile(): void {
-    const storageRef = ref(this._storage, `upload/${this.file.name}`);
-    const task = uploadBytesResumable(storageRef, this.file);
-    percentage(task).subscribe((percentage) => {
-      console.log(`Uploading: ${percentage}%`);
-  });
-}
 }

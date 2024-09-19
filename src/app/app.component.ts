@@ -12,6 +12,7 @@ import { AboutComponent } from './components/about/about.component';
 import { NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { EventsComponent } from './components/events/events.component';
+import { BackToTopComponent } from './shared/component/back-to-top/back-to-top.component';
 
 @Component({
   selector: 'app-root',

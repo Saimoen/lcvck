@@ -3,11 +3,13 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LeafletDataService } from '../../services/leaflet-data.service';
 import { FirestoreService } from '../../services/firestore.service';
 import * as L from 'leaflet';
+import { NgClass, NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [LeafletModule],
+  imports: [LeafletModule, NgIf, NgClass],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })
@@ -24,6 +26,7 @@ export class FooterComponent {
   constructor(
     private leafletDataService: LeafletDataService,
     private fireStoreService: FirestoreService,
+    public router: Router
   ) {}
 
   ngOnInit() {
@@ -41,7 +44,7 @@ export class FooterComponent {
             icon: L.divIcon({
               className: 'custom-icon',
               html: `
-              <img src="../../assets/img/marker-icon.png" alt="marker-icon" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" />
+              <img src="../../assets/img/icon/marker-icon.png" alt="marker-icon" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" />
               <div style="width: 330px; position: absolute; bottom: 20px;">
                 <div class="card shadow card-body collapse" id="collapseExample">
                   <p class="card-text"><span class="fs-5">L</span>igue <span class="fs-5">C</span>alédonienne de <span class="fs-5">V</span>a'a et de <span class="fs-5">C</span>anoë <span class="fs-5">K</span>ayak</p>

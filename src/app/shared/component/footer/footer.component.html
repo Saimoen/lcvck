@@ -2,26 +2,30 @@
   <footer class="row">
     <section id="contact">
       <div class="row w-100">
-        <div class="col-md-6 mt-4">
+        <div [ngClass]="this.router.url !== '/actualites' ? 'col-md-6 mb-5' : 'col-md-12 mb-5'">
           <div class="d-flex justify-content-center">
-            <img src="../../assets/img/lcvck.jpg" class="mx-auto" alt="">
+            <img src="../../assets/img/logo/lcvck.jpg" class="mx-auto" alt="">
           </div>
           <h3 class="text-center">Ligue Calédonienne de Va'a et de Canoë Kayak</h3>
           <div class="container">
             <div class="d-flex align-items-center flex-column">
-              <img src="../../assets/img/phone_8633157.png" class="mt-3" width="50" height="50" alt=""><p>Tel : 79 . 10 . 08</p>
+              <img src="../../assets/img/icon/phone_8633157.png" class="mt-3" width="50" height="50" alt=""><p>Tel : 79 . 10 . 08</p>
               <div class="d-flex">
-               <a class="mx-5" href="https://www.facebook.com/p/Ligue-Caledonienne-De-VAA-ET-CANOE-KAYAK-100057143723449/?locale=fr_FR"> <img src="../../assets/img/facebook_1051360.png" class="mt-3" width="50" height="50" alt=""> </a>
-               <a class="mx-5" href="https://www.instagram.com/lcvck_nc/?hl=fr"> <img src="../../assets/img/application_15072085.png" class="mt-3" width="50" height="50" alt=""> </a>
-               <a class="mx-5" href="https://www.tiktok.com/@lcvck_nc?refer=embed"> <img src="../../assets/img/tik-tok_3046125.png" class="mt-3" width="50" height="50" alt=""> </a>
+               <a class="mx-5" href="https://www.facebook.com/p/Ligue-Caledonienne-De-VAA-ET-CANOE-KAYAK-100057143723449/?locale=fr_FR"> <img src="../../assets/img/icon/facebook_1051360.png" class="mt-3" width="50" height="50" alt=""> </a>
+               <a class="mx-5" href="https://www.instagram.com/lcvck_nc/?hl=fr"> <img src="../../assets/img/icon/application_15072085.png" class="mt-3" width="50" height="50" alt=""> </a>
+               <a class="mx-5" href="https://www.tiktok.com/@lcvck_nc?refer=embed"> <img src="../../assets/img/icon/tik-tok_3046125.png" class="mt-3" width="50" height="50" alt=""> </a>
               </div>
               <a href="mailto:drouet@lagoon.nc">Ligue Calédonienne de Va'a et de Canoë Kayak</a>
-              <img src="../../assets/img/email_8952677.png" class="mt-3" width="50" height="50" alt="">
+              <img src="../../assets/img/icon/email_8952677.png" class="mt-3" width="50" height="50" alt="">
               <a href="mailto:sec.lcvck@gmail.com">drouetrb&#64;lagoon.nc</a>
+              <div class="d-flex mt-5">
+                <a href="#" class="mx-5">Mentions légales</a>
+                <a href="#" class="mx-5">Politique de confidentialité</a>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-6 mt-5 mb-5">
+        <div *ngIf="this.router.url !== '/actualites'" class="col-md-6 mt-5 mb-5">
           <div
             id="map"
             class="map w-100"
@@ -33,16 +37,4 @@
         </div>
       </div>
     </section>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="d-flex justify-content-around">
-        <a href="#">Mentions légales</a>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="d-flex justify-content-around">
-        <a href="#">Politique de confidentialité</a>
-      </div>
-    </div>
-  </div>
 </footer>
