@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { LeafletDataService } from '../../services/leaflet-data.service';
-import { FirestoreService } from '../../services/firestore.service';
 import * as L from 'leaflet';
 import { NgClass, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
@@ -24,18 +22,13 @@ export class FooterComponent {
 
 
   constructor(
-    private leafletDataService: LeafletDataService,
-    private fireStoreService: FirestoreService,
     public router: Router
   ) {}
 
   ngOnInit() {
-    this.leafletDataService.getCoordonnees().subscribe((data) => {
-      this.data = data;
       this.layers = [];
-      this.data.forEach((element: any) => {
         const marker = L.marker(
-          [element.address.geo.lat, element.address.geo.lng],
+          [this.latitude, this.longitude],
           {
             // icon: L.icon({
             //   iconUrl: '../../assets/img/marker-icon.png',
@@ -62,8 +55,6 @@ export class FooterComponent {
         });
 
         this.layers.push(marker);
-      });
-    });
   }
 
   options = {

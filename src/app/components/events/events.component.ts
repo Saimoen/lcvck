@@ -27,7 +27,6 @@ import { EventColor } from 'calendar-utils';
 import { CommonModule, NgSwitch } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { AuthService } from '../../shared/services/auth.service';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { RouterLink } from '@angular/router';
@@ -102,14 +101,10 @@ export class EventsComponent {
 
   activeDayIsOpen: boolean = false;
 
-  constructor(private userService: AuthService, private eventService: EventsService) {}
+  constructor(private eventService: EventsService) {}
 
   ngOnInit() {
     window.scrollTo(0, 0);
-    this.userService.user$.subscribe((user) => {
-      this.user = user;
-      console.log('User:', user);
-    });
 
     // retrieve events from the database
     this.eventService.getEvents().subscribe((events: any) => {

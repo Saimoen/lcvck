@@ -1,5 +1,6 @@
 import {
-  Component
+  Component,
+  OnInit
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { EventColor } from 'calendar-utils';
@@ -16,6 +17,10 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })
-export class AboutComponent {
+export class AboutComponent implements OnInit {
+
+  ngOnInit(): void {
+      window.scrollTo(0, 0);
+  }
  
 }

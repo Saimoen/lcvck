@@ -1,9 +1,7 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import { AuthService } from '../../shared/services/auth.service';
 import { ArticlesService } from '../../shared/services/articles.service';
 import {
   FormBuilder,
@@ -11,10 +9,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { ref, Storage, percentage } from '@angular/fire/storage';
-import { uploadBytesResumable } from 'firebase/storage';
-import { LeafletDataService } from '../../shared/services/leaflet-data.service';
 import L from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
@@ -27,22 +21,9 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 })
 export class ActualiteComponent {
   public articles: any = [];
-  user: firebase.User | null = null;
-  currentFile?: File;
-  message = '';
-  preview = '';
-  file!: File;
-  progress = signal(0);
-
-  private readonly _storage = inject(Storage);
-
-  imageInfos?: Observable<any>;
-
   constructor(
     private articlesService: ArticlesService,
-    private userService: AuthService,
     private builder: FormBuilder,
-    private leafletDataService: LeafletDataService
   ) {}
 
 
@@ -58,7 +39,7 @@ export class ActualiteComponent {
     center: L.latLng(-22.280849, 166.433937),
   };
 
-    public data: any = [];
+  public data: any = [];
   public markers: L.Marker[] = []; // Array to hold Leaflet markers
   public latitude: number = -22.280849;
   public longitude: number = 166.433937;
@@ -79,6 +60,7 @@ export class ActualiteComponent {
             // icon: L.icon({
             //   iconUrl: '../../assets/img/marker-icon.png',
             //   shadowUrl: '../../assets/marker-shadow.png',
+            // ../../../assets/img/logo/olympique.jpg
             // }),
             icon: L.divIcon({
               className: 'custom-icon',

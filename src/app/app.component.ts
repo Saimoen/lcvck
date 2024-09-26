@@ -1,5 +1,3 @@
-import { ProfilComponent } from './components/auth/profil/profil.component';
-import { ConnexionComponent } from './components/auth/connexion/connexion.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DocumentairesComponent } from './components/documentaires/documentaires.component';
 import { ActualiteComponent } from './components/club/club.component';
@@ -12,7 +10,6 @@ import { AboutComponent } from './components/about/about.component';
 import { NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { EventsComponent } from './components/events/events.component';
-import { BackToTopComponent } from './shared/component/back-to-top/back-to-top.component';
 
 @Component({
   selector: 'app-root',
@@ -26,8 +23,6 @@ import { BackToTopComponent } from './shared/component/back-to-top/back-to-top.c
     ActualiteComponent,
     DocumentairesComponent,
     ContactComponent,
-    ConnexionComponent,
-    ProfilComponent,
     EventsComponent,
     RouterLink,
     NgIf,

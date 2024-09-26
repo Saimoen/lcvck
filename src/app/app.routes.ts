@@ -5,8 +5,6 @@ import { ActualiteComponent } from './components/club/club.component';
 import { DocumentairesComponent } from './components/documentaires/documentaires.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ArticleComponent } from './components/article/article.component';
-import { ConnexionComponent } from './components/auth/connexion/connexion.component';
-import { ProfilComponent } from './components/auth/profil/profil.component';
 import { EventsComponent } from './components/events/events.component';
 import { ResultComponent } from './components/result/result.component';
 
@@ -20,6 +18,5 @@ export const routes: Routes = [
   { path: 'competitions', component: ResultComponent },
   { path: 'documentaires', component: DocumentairesComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'connexion', component: ConnexionComponent },
-  { path: 'profil', component: ProfilComponent },
+
 ];
