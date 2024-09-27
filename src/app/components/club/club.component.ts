@@ -1,14 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
-import firebase from 'firebase/compat/app';
 import { ArticlesService } from '../../shared/services/articles.service';
 import {
   FormBuilder,
   FormsModule,
   ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+  } from '@angular/forms';
 import L from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
@@ -19,8 +17,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
   templateUrl: './club.component.html',
   styleUrl: './club.component.scss',
 })
-export class ActualiteComponent {
-  public articles: any = [];
+export class ClubsComponent {
   constructor(
     private articlesService: ArticlesService,
     private builder: FormBuilder,
@@ -49,19 +46,13 @@ export class ActualiteComponent {
   ngOnInit() {
     window.scrollTo(0, 0);
     this.articlesService.getClub().subscribe((data: any) => {
+      console.log(data);
       this.data = data;
-      console.log(this.data);
       this.layers = [];
       this.data.forEach((element: any) => {
-        console.log('element:', element);
         const marker = L.marker(
           [element.latitude, element.longitude],
           {
-            // icon: L.icon({
-            //   iconUrl: '../../assets/img/marker-icon.png',
-            //   shadowUrl: '../../assets/marker-shadow.png',
-            // ../../../assets/img/logo/olympique.jpg
-            // }),
             icon: L.divIcon({
               className: 'custom-icon',
               html: `
@@ -75,12 +66,6 @@ export class ActualiteComponent {
 
         this.layers.push(marker);
       });
-    });
-  }
-
-  getArticles() {
-    this.articlesService.getArticles().subscribe((data) => {
-      this.articles = data;
     });
   }
 }

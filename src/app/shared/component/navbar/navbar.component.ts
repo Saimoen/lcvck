@@ -12,10 +12,4 @@ import { NgIf } from '@angular/common';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-
-  constructor(
-  ) {}
-
-  ngOnInit() { 
-  }
 }

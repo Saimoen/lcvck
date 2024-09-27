@@ -12,8 +12,6 @@ import { Router } from '@angular/router';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  public data: any = [];
-  public articles: any = [];
   public markers: L.Marker[] = []; // Array to hold Leaflet markers
   public latitude: number = -22.280849;
   public longitude: number = 166.433937;
@@ -30,10 +28,6 @@ export class FooterComponent {
         const marker = L.marker(
           [this.latitude, this.longitude],
           {
-            // icon: L.icon({
-            //   iconUrl: '../../assets/img/marker-icon.png',
-            //   shadowUrl: '../../assets/marker-shadow.png',
-            // }),
             icon: L.divIcon({
               className: 'custom-icon',
               html: `
@@ -50,10 +44,7 @@ export class FooterComponent {
               `,
             }),
           }
-        ).on('click', (event) => {
-          console.log('Yay, my marker was clicked!', event);
-        });
-
+        );
         this.layers.push(marker);
   }
 

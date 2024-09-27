@@ -1,12 +1,12 @@
 import { ContactComponent } from './components/contact/contact.component';
 import { DocumentairesComponent } from './components/documentaires/documentaires.component';
-import { ActualiteComponent } from './components/club/club.component';
+import { ClubsComponent } from './components/club/club.component';
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { HomeComponent } from './components/home.component';
 import { NavbarComponent } from './shared/component/navbar/navbar.component';
 import { FooterComponent } from './shared/component/footer/footer.component';
-import { AboutComponent } from './components/about/about.component';
+import { HistoireComponent } from './components/about/about.component';
 import { NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { EventsComponent } from './components/events/events.component';
@@ -19,8 +19,8 @@ import { EventsComponent } from './components/events/events.component';
     HomeComponent,
     NavbarComponent,
     FooterComponent,
-    AboutComponent,
-    ActualiteComponent,
+    HistoireComponent,
+    ClubsComponent,
     DocumentairesComponent,
     ContactComponent,
     EventsComponent,
