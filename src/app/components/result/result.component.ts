@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [NgFor, NgIf, DatePipe, RouterLink],
   templateUrl: './result.component.html',
-  styleUrls: ['./result.component.scss'] // Notez le 's' à la fin de 'styleUrls'
+  styleUrls: ['./result.component.scss']
 })
 export class ResultComponent {
   results: any = [];
@@ -22,7 +22,7 @@ export class ResultComponent {
   ngOnInit(): void {
     this.resultsService.getResults().subscribe(data => {
       this.results = data;
-      this.filterResults(); // Initialement, afficher les résultats de l'année sélectionnée
+      this.filterResults();
     });
   }
 

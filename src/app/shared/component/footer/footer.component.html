@@ -2,7 +2,7 @@
   <footer>
     <section id="contact">
       <div class="row w-100">
-        <div [ngClass]="this.router.url !== '/actualites' ? 'col-md-6' : 'col-md-12'">
+        <div [ngClass]="this.router.url !== '/clubs' ? 'col-md-6' : 'col-md-12'">
           <div class="d-flex justify-content-center">
             <img src="../../assets/img/logo/lcvck.jpg" class="mx-auto img-fluid" alt="Logo">
           </div>
@@ -33,7 +33,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="this.router.url !== '/actualites'" class="col-md-6 mt-5 mb-5">
+        <div *ngIf="this.router.url !== '/clubs'" class="col-md-6 mt-5 mb-5">
           <div
             id="map"
             class="map w-100"

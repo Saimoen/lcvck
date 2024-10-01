@@ -9,6 +9,7 @@ import {
   } from '@angular/forms';
 import L from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { Club } from '../../shared/model/Club.model';
 
 @Component({
   selector: 'app-club',
@@ -36,20 +37,23 @@ export class ClubsComponent {
     center: L.latLng(-22.280849, 166.433937),
   };
 
-  public data: any = [];
+  public datas: Club[] = [];
+  public data?: Club;
   public markers: L.Marker[] = []; // Array to hold Leaflet markers
   public latitude: number = -22.280849;
   public longitude: number = 166.433937;
   public layers: L.Layer[] = [];
   public map!: L.Map;
+  public selectedOption: string = 'Toutes';
 
   ngOnInit() {
     window.scrollTo(0, 0);
-    this.articlesService.getClub().subscribe((data: any) => {
-      console.log(data);
-      this.data = data;
+    this.articlesService.getClub().subscribe((data: Club[]) => {
+      this.datas = data;
       this.layers = [];
-      this.data.forEach((element: any) => {
+      this.datas.forEach((element: any) => {
+        this.data = element;
+        console.log(element);
         const marker = L.marker(
           [element.latitude, element.longitude],
           {
@@ -68,4 +72,19 @@ export class ClubsComponent {
       });
     });
   }
+
+  selectChange(event: any) {
+    this.selectedOption = event.target.value;
+    console.log(this.selectedOption);
+  }
+
+  filterClub(type: string) {
+    if(this.selectedOption === "Toutes") {
+      return true;
+    } else if (type === this.selectedOption) {
+      return true;
+    }
+    return false;
+  }
+
 }
