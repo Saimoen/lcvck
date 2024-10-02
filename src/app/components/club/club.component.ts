@@ -1,12 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
-import { ArticlesService } from '../../shared/services/articles.service';
-import {
-  FormBuilder,
-  FormsModule,
-  ReactiveFormsModule,
-  } from '@angular/forms';
+import { ClubService } from '../../shared/services/club.service';
 import L from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { Club } from '../../shared/model/Club.model';
@@ -14,14 +9,13 @@ import { Club } from '../../shared/model/Club.model';
 @Component({
   selector: 'app-club',
   standalone: true,
-  imports: [RouterModule, LeafletModule, NgFor, NgIf, FormsModule, ReactiveFormsModule],
+  imports: [RouterModule, LeafletModule, NgFor, NgIf],
   templateUrl: './club.component.html',
   styleUrl: './club.component.scss',
 })
 export class ClubsComponent {
   constructor(
-    private articlesService: ArticlesService,
-    private builder: FormBuilder,
+    private clubService: ClubService,
   ) {}
 
 
@@ -48,7 +42,7 @@ export class ClubsComponent {
 
   ngOnInit() {
     window.scrollTo(0, 0);
-    this.articlesService.getClub().subscribe((data: Club[]) => {
+    this.clubService.getClub().subscribe((data: Club[]) => {
       this.datas = data;
       this.layers = [];
       this.datas.forEach((element: any) => {

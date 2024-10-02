@@ -6,7 +6,7 @@ import { Club } from '../model/Club.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ArticlesService {
+export class ClubService {
 
   constructor(private http: HttpClient) { }
   apiUrl: string = 'http://localhost:8080/api/v1/clubs';

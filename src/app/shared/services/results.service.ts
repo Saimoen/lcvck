@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Course } from '../model/Course.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +9,9 @@ import { Injectable } from '@angular/core';
 export class ResultsService {
 
   constructor(private http: HttpClient) { }
-  apiUrl = '/api/resultats'
+  apiUrl = 'http://localhost:8080/api/v1/resultats'
 
-  getResults() {
-    return this.http.get(this.apiUrl)
+  getResults(): Observable<Course[]> {
+    return this.http.get<Course[]>(this.apiUrl)
   }
 }

@@ -1,23 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { ResultsService } from '../../shared/services/results.service';
-import { FormBuilder } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { Course } from '../../shared/model/Course.model';
+import { EventsComponent } from "../events/events.component";
 
 @Component({
   selector: 'app-result',
   standalone: true,
-  imports: [NgFor, NgIf, DatePipe, RouterLink],
+  imports: [NgFor, NgIf, DatePipe, RouterLink, EventsComponent],
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss']
 })
-export class ResultComponent {
-  results: any = [];
-  filteredResults: any = [];
-  selectedOption: number = 2024;
+export class ResultComponent implements OnInit {
+  results: Course[] = [];
+  filteredResults: Course[] = [];
+  selectedOption: number | null = null;
   visible: boolean = true;
 
-  constructor(private resultsService: ResultsService, private builder: FormBuilder) { }
+  constructor(private resultsService: ResultsService) { }
 
   ngOnInit(): void {
     this.resultsService.getResults().subscribe(data => {
@@ -27,12 +28,17 @@ export class ResultComponent {
   }
 
   selectChange(event: any) {
-    this.selectedOption = +event.target.value; // Convertir la valeur en nombre
+    const selectedValue = event.target.value; 
+    this.selectedOption = selectedValue ? +selectedValue : null;
     this.filterResults();
   }
-
+  
   filterResults() {
-    this.filteredResults = this.results.filter((result: any) => this.extractYear(result.date) === this.selectedOption);
+    if (this.selectedOption === null) {
+      this.filteredResults = this.results;
+    } else {
+      this.filteredResults = this.results.filter((result: any) => this.extractYear(result.date) === this.selectedOption);
+    }
     this.visible = this.filteredResults.length > 0;
   }
 
