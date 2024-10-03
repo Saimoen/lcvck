@@ -12,7 +12,7 @@ export const routes: Routes = [
   { path: 'accueil', component: HomeComponent },
   { path: 'histoire', component: HistoireComponent },
   { path: 'clubs', component: ClubsComponent },
-  { path: 'evenements', component: EventsComponent },
+  { path: 'connexion', component: EventsComponent },
   { path: 'competitions', component: ResultComponent },
   { path: 'documentaires', component: DocumentairesComponent },
   { path: 'contact', component: ContactComponent },
