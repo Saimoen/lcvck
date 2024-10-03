@@ -22,6 +22,9 @@
         <li><a routerLink="/clubs" class="mx-3 fs-5">Nos clubs</a></li>
         <li><a routerLink="/histoire" class="mx-3 fs-5">Le Va'a</a></li>
         <li><a routerLink="/documentaires" class="mx-3 fs-5">Portraits vidéos</a></li>
+        <!-- Affiche "Se déconnecter" seulement si l'utilisateur est authentifié -->
+        <li><a *ngIf="isAuthenticated" (click)="disconnect()" class="mx-3"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+        </a></li>
       </ul>
     </div>
   </div>

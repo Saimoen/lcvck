@@ -9,7 +9,7 @@ import { FooterComponent } from './shared/component/footer/footer.component';
 import { HistoireComponent } from './components/about/about.component';
 import { NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { EventsComponent } from './components/events/events.component';
+import { ConnexionComponent } from './components/auth/connexion/connexion.component';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +23,7 @@ import { EventsComponent } from './components/events/events.component';
     ClubsComponent,
     DocumentairesComponent,
     ContactComponent,
-    EventsComponent,
+    ConnexionComponent,
     RouterLink,
     NgIf,
     HttpClientModule,

@@ -3,12 +3,11 @@ import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { ResultsService } from '../../shared/services/results.service';
 import { RouterLink } from '@angular/router';
 import { Course } from '../../shared/model/Course.model';
-import { EventsComponent } from "../events/events.component";
 
 @Component({
   selector: 'app-result',
   standalone: true,
-  imports: [NgFor, NgIf, DatePipe, RouterLink, EventsComponent],
+  imports: [NgFor, NgIf, DatePipe, RouterLink],
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss']
 })

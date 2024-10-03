@@ -5,6 +5,7 @@ import { ClubService } from '../../shared/services/club.service';
 import L from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { Club } from '../../shared/model/Club.model';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-club',
@@ -14,12 +15,6 @@ import { Club } from '../../shared/model/Club.model';
   styleUrl: './club.component.scss',
 })
 export class ClubsComponent {
-  constructor(
-    private clubService: ClubService,
-  ) {}
-
-
-  
   options = {
     layers: [
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -39,9 +34,20 @@ export class ClubsComponent {
   public layers: L.Layer[] = [];
   public map!: L.Map;
   public selectedOption: string = 'Toutes';
+  public authToken?: string | null;
+
+  constructor(
+    private clubService: ClubService,
+    private authService: AuthService
+  ) {}
+
+
+  
+
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.authToken = this.authService.getAuthToken();
     this.clubService.getClub().subscribe((data: Club[]) => {
       this.datas = data;
       this.layers = [];

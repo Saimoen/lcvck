@@ -2,16 +2,16 @@ import { CommonModule, NgSwitch } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Component } from '@angular/core';
-import { AuthService } from '../../shared/services/auth.service';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-events',
   standalone: true,
   imports: [NgSwitch, FormsModule, CommonModule, RouterLink, ReactiveFormsModule],
-  templateUrl: './events.component.html',
-  styleUrl: './events.component.scss'
+  templateUrl: './connexion.component.html',
+  styleUrl: './connexion.component.scss'
 })
-export class EventsComponent {
+export class ConnexionComponent {
   public identifiant : string = '';
   public password : string = '';
 
@@ -34,8 +34,7 @@ export class EventsComponent {
     this.authService.login(login, password).subscribe(
       (response: any) => {
         this.authService.setAuthToken(response.token);
-        this.router.navigate(['/competitions']);
-        console.log(response);
+        this.router.navigate(['/profil']);
       },
       (error) => {
         console.log(error);
