@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { ResultsService } from '../../shared/services/results.service';
 import { RouterLink } from '@angular/router';
 import { Course } from '../../shared/model/Course.model';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-result',
@@ -16,12 +17,15 @@ export class ResultComponent implements OnInit {
   filteredResults: Course[] = [];
   selectedOption: number | null = null;
   visible: boolean = true;
+  authService = inject(AuthService);
+  token = this.authService.getAuthToken();
 
   constructor(private resultsService: ResultsService) { }
 
   ngOnInit(): void {
     this.resultsService.getResults().subscribe(data => {
       this.results = data;
+      console.log(this.results);
       this.filterResults();
     });
   }
@@ -44,5 +48,12 @@ export class ResultComponent implements OnInit {
   extractYear(dateString: string) {
     const date = new Date(dateString);
     return date.getFullYear();
+  }
+
+  postResults(course: Course) {
+    this.resultsService.postResults(course).subscribe(() => {
+      this.results.push(course);
+      this.filterResults();
+    });
   }
 }

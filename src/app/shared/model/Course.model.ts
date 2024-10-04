@@ -1,7 +1,7 @@
 export interface Course {
     date: string
     course: string
-    classement: Classement[]
+    classements: Classement[]
   }
   
   export interface Classement {

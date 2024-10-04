@@ -12,6 +12,10 @@ export class ResultsService {
   apiUrl = 'http://localhost:8080/api/v1/resultats'
 
   getResults(): Observable<Course[]> {
-    return this.http.get<Course[]>(this.apiUrl)
+    return this.http.get<Course[]>(this.apiUrl + "/get")
+  }
+
+  postResults(course: Course): Observable<Course> {
+    return this.http.post<Course>(this.apiUrl + "/create", course)
   }
 }

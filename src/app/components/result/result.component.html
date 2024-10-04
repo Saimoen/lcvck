@@ -68,6 +68,58 @@
 <div class="container">
   <h2 class="text-center mt-5">Résultats</h2>
   <p class="text-center">Retrouvez ici les résultats des différentes compétitions de la Ligue Calédonienne de Va'a et de Canoë Kayak.</p>
+  <button *ngIf="token" class="btn btn-primary mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Ajouter une course
+  </button>
+  <div class="collapse mt-4 w-50 mx-auto" id="collapseExample">
+    <div class="card card-body">
+
+
+
+      <form>
+        <div class="mb-3 text-center">
+          <h4>Informations sur la course</h4>
+        </div>
+        <div class="mb-3">
+          <input type="text" placeholder="Date de la course" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <input type="text" placeholder="Nom de la course" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3 text-center">
+          <h4>Classements</h4>
+        </div>
+        <div class="mb-3">
+          <input type="text" placeholder="Position" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+          <input type="text" placeholder="Dossard" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+          <input type="text" placeholder="Numéro" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+          <input type="text" placeholder="Équipage" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+          <input type="text" placeholder="Catégorie" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+          <input type="text" placeholder="Nom" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+          <input type="text" placeholder="Temps" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+          <input type="text" placeholder="Écart" class="form-control" id="exampleInputPassword1">
+        </div>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+      </form>
+
+
+
+    </div>
+  </div>
 </div>
 
 <div class="container w-25 mt-3">
@@ -99,7 +151,7 @@
             <th scope="col">Écart</th>
           </tr>
         </thead>
-        <tbody *ngFor="let classement of result.classement; let i = index">
+        <tbody *ngFor="let classement of result.classements; let i = index">
           <tr>
             <th scope="row">{{ classement.position }}</th>
             <td>{{ classement.dossard }}</td>
