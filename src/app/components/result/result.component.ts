@@ -4,15 +4,41 @@ import { ResultsService } from '../../shared/services/results.service';
 import { RouterLink } from '@angular/router';
 import { Course } from '../../shared/model/Course.model';
 import { AuthService } from '../../shared/services/auth.service';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-result',
   standalone: true,
-  imports: [NgFor, NgIf, DatePipe, RouterLink],
+  imports: [
+    NgFor,
+    NgIf,
+    DatePipe,
+    RouterLink,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './result.component.html',
-  styleUrls: ['./result.component.scss']
+  styleUrls: ['./result.component.scss'],
 })
 export class ResultComponent implements OnInit {
+  myForm = new FormGroup({
+    date: new FormControl(''),
+    course: new FormControl(''),
+    classements: new FormArray([
+      this.createClassementGroup(), // Initialisation avec un premier groupe
+    ]),
+  });
+
+  // Getter pour simplifier l'accès au FormArray dans le template
+  get classements(): FormArray {
+    return this.myForm.get('classements') as FormArray;
+  }
   results: Course[] = [];
   filteredResults: Course[] = [];
   selectedOption: number | null = null;
@@ -20,28 +46,48 @@ export class ResultComponent implements OnInit {
   authService = inject(AuthService);
   token = this.authService.getAuthToken();
 
-  constructor(private resultsService: ResultsService) { }
+  constructor(private resultsService: ResultsService) {
+  }
 
   ngOnInit(): void {
-    this.resultsService.getResults().subscribe(data => {
-      this.results = data;
-      console.log(this.results);
-      this.filterResults();
+    this.getResults();
+  }
+
+  // Méthode pour créer un FormGroup pour un classement
+  createClassementGroup(): FormGroup {
+    return new FormGroup({
+      position: new FormControl(''),
+      numero: new FormControl(''),
+      dossard: new FormControl(''),
+      equipage: new FormControl(''),
+      categorie: new FormControl(''),
+      nom: new FormControl(''),
+      temps: new FormControl(''),
+      ecart: new FormControl(''),
     });
   }
 
+  // Méthode pour ajouter un nouveau classement au FormArray
+  // addClassement() {
+  //   this.classement.push(this.createClassementGroup());
+  // }
+
   selectChange(event: any) {
-    const selectedValue = event.target.value; 
+    const selectedValue = event.target.value;
     this.selectedOption = selectedValue ? +selectedValue : null;
     this.filterResults();
   }
-  
+
   filterResults() {
     if (this.selectedOption === null) {
       this.filteredResults = this.results;
     } else {
-      this.filteredResults = this.results.filter((result: any) => this.extractYear(result.date) === this.selectedOption);
+      this.filteredResults = this.results.filter(
+        (result: any) => this.extractYear(result.date) === this.selectedOption
+      );
     }
+  console.log(this.filteredResults);
+
     this.visible = this.filteredResults.length > 0;
   }
 
@@ -50,10 +96,34 @@ export class ResultComponent implements OnInit {
     return date.getFullYear();
   }
 
-  postResults(course: Course) {
-    this.resultsService.postResults(course).subscribe(() => {
-      this.results.push(course);
+  getResults() {
+    this.resultsService.getResults().subscribe(data => {
+      this.results = data;
+      console.log(this.results);
       this.filterResults();
     });
+  }
+
+  console() {
+    const formValue = this.myForm.value;
+    const courseData: Course = {
+      date: formValue.date || '',
+      course: formValue.course || '',
+      classements: formValue.classements || [],
+    };
+
+    // Appel au service pour envoyer les données à l'API
+    this.resultsService.postResults(courseData).subscribe(
+      (response) => {
+        console.log('Réponse du serveur : ', response);
+        this.getResults();
+        window.location.reload();
+        alert('Données envoyées avec succès');
+      },
+      (error) => {
+        console.error("Erreur lors de l'envoi : ", error);
+        alert("Erreur lors de l'envoi des données");
+      }
+    );
   }
 }

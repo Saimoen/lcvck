@@ -76,45 +76,54 @@
 
 
 
-      <form>
+      <form [formGroup]="myForm" (ngSubmit)="console()">
         <div class="mb-3 text-center">
           <h4>Informations sur la course</h4>
         </div>
+      
         <div class="mb-3">
-          <input type="text" placeholder="Date de la course" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input type="text" formControlName="date" placeholder="Date de la course" class="form-control">
         </div>
+      
         <div class="mb-3">
-          <input type="text" placeholder="Nom de la course" class="form-control" id="exampleInputPassword1">
+          <input type="text" formControlName="course" placeholder="Nom de la course" class="form-control">
         </div>
+      
         <div class="mb-3 text-center">
           <h4>Classements</h4>
         </div>
-        <div class="mb-3">
-          <input type="text" placeholder="Position" class="form-control" id="exampleInputPassword1">
+      
+        <!-- Boucle sur le FormArray 'classement' -->
+        <div formArrayName="classements">
+          <div *ngFor="let group of classements.controls; let i = index" [formGroupName]="i">
+            <div class="mb-3">
+              <input type="text" formControlName="position" placeholder="Position" class="form-control">
+            </div>
+      
+            <div class="mb-3">
+              <input type="text" formControlName="numero" placeholder="Numéro" class="form-control">
+            </div>
+      
+            <div class="mb-3">
+              <input type="text" formControlName="dossard" placeholder="Dossard" class="form-control">
+            </div>
+      
+            <div class="mb-3">
+             <input type="text" formControlName="numero" placeholder="Numéro" class="form-control">
+            </div>
+              
+            <div class="mb-3">
+             <input type="text" formControlName="equipage" placeholder="Équipage" class="form-control">
+            </div>
+
+      
+          </div>
         </div>
-        <div class="mb-3">
-          <input type="text" placeholder="Dossard" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3">
-          <input type="text" placeholder="Numéro" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3">
-          <input type="text" placeholder="Équipage" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3">
-          <input type="text" placeholder="Catégorie" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3">
-          <input type="text" placeholder="Nom" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3">
-          <input type="text" placeholder="Temps" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3">
-          <input type="text" placeholder="Écart" class="form-control" id="exampleInputPassword1">
-        </div>
+<!--       
+        <button type="button" (click)="addClassement()">Ajouter un classement</button> -->
         <button type="submit" class="btn btn-primary">Enregistrer</button>
       </form>
+      
 
 
 
