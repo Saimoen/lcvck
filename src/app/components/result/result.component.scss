@@ -1,8 +1,28 @@
 .test {
-    width: 69vh;
-    height: 55%;
-    background-image: url("../../../assets/img/photo/carousel.jpg");
-    background-size: cover;
-    background-repeat: repeat;
-    background-position: center;
+  width: 69vh;
+  height: 55%;
+  background-image: url("../../../assets/img/photo/carousel.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.talents {
+  width: 16rem; height: 23rem
+}
+
+.nautique {
+  width: 18rem;
+}
+
+@media screen and (max-width: 321px) {
+  .talents {
+    margin-top: 10px;
   }
+
+  .nautique {
+    width: 15rem;
+    margin-top: 10px;
+  }
+  
+}

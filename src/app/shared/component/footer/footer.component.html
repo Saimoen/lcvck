@@ -1,7 +1,8 @@
-<div class="py-1 w-100">
+<div class="py-1">
   <footer>
     <section id="contact">
-      <div class="row w-100">
+      <div class="container">
+      <div class="row">
         <div [ngClass]="this.router.url !== '/clubs' ? 'col-md-6' : 'col-md-12'">
           <div class="d-flex justify-content-center">
             <img src="../../assets/img/logo/lcvck.jpg" class="mx-auto img-fluid" alt="Logo">
@@ -9,7 +10,7 @@
           <div class="container">
             <div class="d-flex align-items-center flex-column">
               <div class="d-flex align-items-center flex-column">
-                <img src="../../assets/img/icon/phone_8633157.png" class="img-fluid" width="50" height="50" alt="Phone Icon">
+                <img src="../../assets/img/icon/phone_8633157.png" class="img-fluid  mx-auto" width="50" height="50" alt="Phone Icon">
                 <p class="mt-2">Tel : 79 . 10 . 08</p>
               </div>
               <div class="d-flex justify-content-center mt-4">
@@ -23,7 +24,7 @@
                   <img src="../../assets/img/icon/tik-tok_3046125.png" class="img-fluid" width="50" height="50" alt="TikTok Icon">
                 </a>
               </div>
-              <a href="mailto:drouet@lagoon.nc" class="mt-4">Ligue Calédonienne de Va'a et de Canoë Kayak</a>
+              <a href="mailto:drouet@lagoon.nc" class="mt-4 text-center">Ligue Calédonienne de Va'a et de Canoë Kayak</a>
               <img src="../../assets/img/icon/email_8952677.png" class="mt-3" width="50" height="50" alt="Email Icon">
               <a href="mailto:sec.lcvck@gmail.com" class="mt-2">drouetrb&#64;lagoon.nc</a>
               <div class="d-flex justify-content-center mt-5">
@@ -33,10 +34,10 @@
             </div>
           </div>
         </div>
-        <div *ngIf="this.router.url !== '/clubs'" class="col-md-6 mt-5 mb-5">
+        <div *ngIf="this.router.url !== '/clubs'" class="col-md-6 col-xs-12 mt-5 mb-5">
           <div
             id="map"
-            class="map w-100"
+            class="map"
             style="height: 69vh"
             leaflet
             [leafletOptions]="options"
@@ -44,6 +45,8 @@
           ></div>
         </div>
       </div>
+    </div>
     </section>
   </footer>
-</div>
+</div> 
+

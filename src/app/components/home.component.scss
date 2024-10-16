@@ -1,4 +1,4 @@
-.test {
+.decouverte {
   width: 69vh;
   height: 100%;
   background-image: url("../../assets/img/photo/femme-vaa.png");
@@ -7,7 +7,7 @@
   background-position: center;
 }
 
-.test-1 {
+.club {
   width: 69vh;
   height: 100%;
   background-image: url("../../assets/img/photo/pirogue-sport.jpg");
@@ -16,15 +16,16 @@
   background-position: center;
 }
 
-.test-2 {
+.statisk {
   width: 69vh;
   height: 100%;
   background-image: url("../../assets/img/photo/MAWI.png");
   background-size: cover;
   background-repeat: repeat;
   background-position: center;
+  padding-bottom: 50px;
 }
-.test-3 {
+.athletes {
   width: 69vh;
   height: 100%;
   background-image: url("../../assets/img/photo/femme.png");
@@ -36,6 +37,20 @@
 main {
   position: relative;
   z-index: 1;
+}
+
+.titre-accueil {
+  padding-top: 16%;
+  font-size: 7vw;
+  padding-left: 16%;
+  color: white;
+}
+
+.titre-accueil-vaa {
+  padding-top: 7%;
+  font-size: 7vw;
+  padding-left: 16%;
+  color: white;
 }
 
 .caroussel {
@@ -53,4 +68,66 @@ main {
   width: 25px; /* Ajustez selon vos besoins */
   height: 41px; /* Ajustez selon vos besoins */
   display: block;
+}
+
+.paragraphe-accueil {
+  font-size: 2vw;
+  padding-left: 16%;
+  color: white;
+}
+.paragraphe-accueil-vaa {
+  font-size: 2vw;
+  padding-left: 16%;
+  color: white;
+}
+
+.bouton-accueil {
+  width: 35%;
+  padding: 10px 10px 10px 10px;
+  margin: auto;
+}
+
+.br-25 {
+  border-radius: 25px;
+}
+
+.degradee-droite {
+  max-width: 100.7%;background: linear-gradient(90deg, rgba(0, 0,0, 0.7) 0%, rgba(0,212,255,0) 100%);
+}
+
+.degradee-gauche {
+  max-width: 100.7%;background: linear-gradient(90deg, rgba(0, 0,0, 0) 0%, rgba(0,0,0,0.7) 100%);
+}
+
+@media screen and (max-width: 321px) {
+  .titre-accueil {
+    padding-top: 16%;
+    font-size: 13vw;
+    padding-left: 16%;
+    color: white;
+  }
+  .bouton-accueil {
+    width: 65%;
+    padding: 0px;
+    margin: auto;
+  }
+  .paragraphe-accueil {
+    font-size: 4vw;
+    padding-left: 16%;
+    color: white;
+  }
+  .paragraphe-accueil-vaa {
+    font-size: 4vw;
+    padding-left: 16%;
+    color: white;
+  }
+  .statisk {
+    padding-bottom: 0px;
+  }
+  .degradee-gauche {
+    max-width: 103.9%;background: linear-gradient(90deg, rgba(0, 0,0, 0) 0%, rgba(0,0,0,0.7) 100%);
+  }
+  .span-accueil {
+    font-size: 6vw;
+  }
 }

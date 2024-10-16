@@ -68,9 +68,14 @@ export class ResultComponent implements OnInit {
   }
 
   // Méthode pour ajouter un nouveau classement au FormArray
-  // addClassement() {
-  //   this.classement.push(this.createClassementGroup());
-  // }
+  addClassement() {
+    this.classements.push(this.createClassementGroup());
+  }
+
+  // Méthode pour supprimer un classement du FormArray
+  removeClassement(index: number) {
+    this.classements.removeAt(index);
+  }
 
   selectChange(event: any) {
     const selectedValue = event.target.value;
