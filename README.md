@@ -1,5 +1,3 @@
-# LCVCK
-
 # Pré-requis
 
 Installer NodeJS via le lien suivant, je vous conseille de prendre une version LTS :
