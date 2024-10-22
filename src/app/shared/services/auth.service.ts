@@ -12,7 +12,7 @@ export class AuthService {
   apiUrl = environmentProd.apiUrl;
 
   login(login: string, password: string) {
-    return this.http.post(this.apiUrl + 'api/v1/auth', {login, password});
+    return this.http.post(this.apiUrl + '/login', {login, password});
   }
 
   getAuthToken() {
