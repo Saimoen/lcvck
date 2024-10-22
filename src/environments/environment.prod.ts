@@ -1,5 +1,5 @@
 export const environmentProd = {
     production: true,
-    apiUrl: 'https://lcvck-back-d4ece89d2d6b.herokuapp.com/'
+    apiUrl: 'https://lcvck-back-d4ece89d2d6b.herokuapp.com'
 }
 // Compare this snippet from src/environments/environment.prod.ts:
