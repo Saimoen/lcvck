@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Course } from '../model/Course.model';
-import { environment } from '../../../environments/environment';
+import { environmentProd } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 export class ResultsService {
 
   constructor(private http: HttpClient) { }
-  apiUrl = environment.apiUrl + '/api/v1/resultats'
+  apiUrl = environmentProd.apiUrl + '/api/v1/resultats'
 
   getResults(): Observable<Course[]> {
     return this.http.get<Course[]>(this.apiUrl + "/get")

@@ -1,4 +1,4 @@
-export const environment = {
+export const environmentProd = {
     production: true,
     apiUrl: 'https://lcvck-back-d4ece89d2d6b.herokuapp.com/'
 }
