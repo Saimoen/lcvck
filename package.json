@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "heroku-postbuild": "ng build --prod && npm install -g http-server-spa",
+    "heroku-postbuild": "ng build --configuration=production && npm install -g http-server-spa",
     "start": "http-server-spa dist/lcvck/ index.html $PORT",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
@@ -53,5 +53,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.3.2"
+  },
+  "engines": {
+    "node": "20.17.0" 
   }
 }
