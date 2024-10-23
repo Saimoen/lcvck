@@ -1,4 +1,5 @@
 export interface Course {
+    id: number
     date: string
     course: string
     classements: Classement[]
@@ -10,7 +11,7 @@ export interface Course {
     num: number
     equipage: string
     categorie: string
-    noms: string[]
+    nom: string
     temps: string
     ecart: string
   }

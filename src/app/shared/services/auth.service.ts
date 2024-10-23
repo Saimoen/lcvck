@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environmentProd } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
   apiUrl = environmentProd.apiUrl;
 
   login(login: string, password: string) {
-    return this.http.post(this.apiUrl + '/login', {login, password});
+    return this.http.post(this.apiUrl + 'login', {login, password});
   }
 
   getAuthToken() {

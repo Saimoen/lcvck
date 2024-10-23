@@ -68,8 +68,8 @@
         <div class="card-body">
           <h5 class="card-title">Canoë</h5>
           <p class="card-text">
-            Le canoë se distingue par ses sièges individuels et ses pagaies à une
-            seule pale. Le rameur est assis à genoux ou sur un siège.
+            Le canoë se distingue par ses sièges individuels et ses pagaies à
+            une seule pale. Le rameur est assis à genoux ou sur un siège.
           </p>
         </div>
       </div>
@@ -152,7 +152,7 @@
   </div>
 </div>
 
-<!-- <div class="container">
+<div class="container">
   <h2 class="text-center mt-5">Résultats</h2>
   <p class="text-center">
     Retrouvez ici les résultats des différentes compétitions de la Ligue
@@ -171,7 +171,7 @@
   </button>
   <div class="collapse mt-4 w-50 mx-auto" id="collapseExample">
     <div class="card card-body">
-      <form [formGroup]="myForm" (ngSubmit)="console()">
+      <form [formGroup]="myForm" (ngSubmit)="sendInformation()">
         <div class="mb-3 text-center">
           <h4>Informations sur la course</h4>
         </div>
@@ -180,7 +180,7 @@
           <input
             type="text"
             formControlName="date"
-            placeholder="Date de la course"
+            placeholder="Date de la course (format : 2024-06-13) "
             class="form-control"
           />
         </div>
@@ -199,11 +199,12 @@
         </div>
 
         <!-- Boucle sur le FormArray 'classement' -->
-        <!-- <div formArrayName="classements">
+        <div formArrayName="classements">
           <div
             *ngFor="let group of classements.controls; let i = index"
             [formGroupName]="i"
           >
+            <h3 *ngIf="titre">Position {{ i + 1 }}</h3>
             <div class="mb-3">
               <input
                 type="text"
@@ -216,7 +217,7 @@
             <div class="mb-3">
               <input
                 type="text"
-                formControlName="numero"
+                formControlName="num"
                 placeholder="Numéro"
                 class="form-control"
               />
@@ -275,16 +276,30 @@
                 class="form-control"
               />
             </div>
+            <button
+              type="button"
+              class="btn btn-danger mb-2"
+              *ngIf="i !== 0"
+              (click)="removeClassement(i)"
+            >
+              Supprimer le classement
+            </button>
           </div>
-        </div>       
+        </div>
         <button type="submit" class="btn btn-primary">Enregistrer</button>
-        <button type="button" class="btn btn-secondary mx-3" (click)="addClassement()">Ajouter un classement</button>
+        <button
+          type="button"
+          class="btn btn-secondary mx-3"
+          (click)="addClassement()"
+        >
+          Ajouter un classement
+        </button>
       </form>
     </div>
   </div>
-</div> -->
+</div>
 
-<!-- <div class="container w-25 mt-3">
+<div class="container w-25 mt-3">
   <select class="form-select" (change)="selectChange($event)" aria-label="">
     <option value="" selected>Trier par année :</option>
     <option value="2024">2024</option>
@@ -302,6 +317,156 @@
     </div>
 
     <div class="table-responsive mt-5 mb-5">
+      <button
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseModif"
+        aria-expanded="false"
+        *ngIf="token"
+        [attr.aria-controls]="'collapseModif' + result.id"
+        class="btn btn-primary"
+        (click)="result?.id !== undefined ? getCourseById(result.id!) : null"
+      >
+        Modifier la course
+      </button>
+      <button
+        class="btn btn-primary mx-3"
+        *ngIf="token"
+        (click)="deleteCourse(result.id)"
+      >
+        Supprimer la course
+      </button>
+      <div
+        class="collapse mt-4 w-50 mx-auto"
+        [ngClass]="{ show: selectedCourseId === result.id }"
+        id="collapseModif{{ result.id }}"
+      >
+        <div class="card card-body">
+          <form [formGroup]="myForm" (ngSubmit)="putResults(result.id)">
+            <div class="mb-3 text-center">
+              <h4>Informations sur la course</h4>
+            </div>
+
+            <div class="mb-3">
+              <input
+                type="text"
+                formControlName="date"
+                placeholder="Date de la course (format : 2024-06-13)"
+                class="form-control"
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                type="text"
+                formControlName="course"
+                placeholder="Nom de la course"
+                class="form-control"
+              />
+            </div>
+
+            <div class="mb-3 text-center">
+              <h4>Classements</h4>
+            </div>
+
+            <!-- Boucle sur le FormArray 'classement' -->
+            <div formArrayName="classements">
+              <div
+                *ngFor="let group of classements.controls; let i = index"
+                [formGroupName]="i"
+              >
+                <h3 *ngIf="titre">Position {{ i + 1 }}</h3>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    formControlName="position"
+                    placeholder="Position"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    formControlName="num"
+                    placeholder="Numéro"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    formControlName="dossard"
+                    placeholder="Dossard"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    formControlName="equipage"
+                    placeholder="Équipage"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    formControlName="categorie"
+                    placeholder="Catégorie"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    formControlName="nom"
+                    placeholder="Nom"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    formControlName="temps"
+                    placeholder="Temps"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    formControlName="ecart"
+                    placeholder="Écart"
+                    class="form-control"
+                  />
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-danger mb-2"
+                  *ngIf="i !== 0"
+                  (click)="removeClassement(i)"
+                >
+                  Supprimer le classement
+                </button>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <button
+              type="button"
+              class="btn btn-secondary mx-3"
+              (click)="addClassement()"
+            >
+              Ajouter un classement
+            </button>
+          </form>
+        </div>
+      </div>
       <table class="table table-striped table-hover">
         <thead>
           <tr>
@@ -315,14 +480,14 @@
             <th scope="col">Écart</th>
           </tr>
         </thead>
-        <tbody *ngFor="let classement of result.classements; let i = index">
+        <tbody *ngFor="let classement of result.classements">
           <tr>
             <th scope="row">{{ classement.position }}</th>
             <td>{{ classement.dossard }}</td>
             <td>{{ classement.num }}</td>
             <td>{{ classement.equipage }}</td>
             <td>{{ classement.categorie }}</td>
-            <td>{{ classement.noms[i] }}</td>
+            <td>{{ classement.nom }}</td>
             <td>{{ classement.temps }}</td>
             <td>{{ classement.ecart }}</td>
           </tr>
@@ -330,4 +495,4 @@
       </table>
     </div>
   </div>
-</section> -->
+</section>
