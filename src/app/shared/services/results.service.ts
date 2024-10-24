@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 export class ResultsService {
 
   constructor(private http: HttpClient) { }
-  apiUrl = environmentProd.apiUrl + 'api/v1/resultats'
+  apiUrl = environmentProd.apiUrl + '/api/v1/resultats'
 
   getResults(): Observable<Course[]> {
     return this.http.get<Course[]>(this.apiUrl + "/get")
