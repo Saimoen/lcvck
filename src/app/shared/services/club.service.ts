@@ -15,4 +15,11 @@ export class ClubService {
   getClub(): Observable<Club[]> {
     return this.http.get<Club[]>(this.apiUrl);
   }
+
+  uploadImage(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('image', file, file.name);
+
+    return this.http.post('/api/clubs/upload', formData);
+}
 }
