@@ -1,15 +1,14 @@
 export interface Club {
     id: string;
-    image: string;
+    image: Blob;
     mail: string;
     telephone: string;
-    nom: string;
+    titre: string;
     adresse: string;
     latitude: string;
     longitude: string;
     lien: string;
     province: string;
-    titre: string;
     type: string;
   }
   

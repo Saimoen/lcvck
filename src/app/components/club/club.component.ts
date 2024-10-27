@@ -6,15 +6,29 @@ import L from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { Club } from '../../shared/model/Club.model';
 import { AuthService } from '../../shared/services/auth.service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-club',
   standalone: true,
-  imports: [RouterModule, LeafletModule, NgFor, NgIf],
+  imports: [RouterModule, LeafletModule, NgFor, NgIf, ReactiveFormsModule],
   templateUrl: './club.component.html',
   styleUrl: './club.component.scss',
 })
 export class ClubsComponent {
+  myForm = new FormGroup({
+    image: new FormControl(''),
+    mail: new FormControl(''),
+    telephone: new FormControl(''),
+    titre: new FormControl(''),
+    adresse: new FormControl(''),
+    latitude: new FormControl(''),
+    longitude: new FormControl(''),
+    lien: new FormControl(''),
+    province: new FormControl(''),
+    type: new FormControl(''),
+  });
+
   options = {
     layers: [
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -35,15 +49,13 @@ export class ClubsComponent {
   public map!: L.Map;
   public selectedOption: string = 'Toutes';
   public authToken?: string | null;
+  public selectedFile: File | null = null; // Propriété pour stocker le fichier sélectionné
+  public imageUrls: { [id: string]: string } = {};
 
   constructor(
     private clubService: ClubService,
     private authService: AuthService
   ) {}
-
-
-  
-
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -53,38 +65,89 @@ export class ClubsComponent {
       this.layers = [];
       this.datas.forEach((element: any) => {
         this.data = element;
-        console.log(element);
-        const marker = L.marker(
-          [element.latitude, element.longitude],
-          {
+        this.clubService.getImage(element.id).subscribe((blob: Blob) => {
+          // Création d'une URL à partir du blob pour l'affichage
+          this.imageUrls[element.id] = URL.createObjectURL(blob);
+
+          const marker = L.marker([element.latitude, element.longitude], {
             icon: L.divIcon({
               className: 'custom-icon',
               html: `
-              <img src="${element.image}" alt="marker-icon" style="width: 50px" />
-              `,
+                <img src="${this.imageUrls[element.id]}" alt="marker-icon" style="width: 50px" />
+                `,
             }),
-          }
-        ).on('click', (event) => {
-          console.log('Yay, my marker was clicked!', event);
+          }).on('click', (event) => {
+            console.log('Yay, my marker was clicked!', event);
+          });
+  
+          this.layers.push(marker);
         });
 
-        this.layers.push(marker);
       });
     });
   }
 
+  addClub() {
+    const formData: FormData = new FormData();
+
+    // Ajout des valeurs du formulaire au FormData avec une valeur par défaut pour éviter les erreurs
+    formData.append('mail', this.myForm.value.mail ?? '');
+    formData.append('telephone', this.myForm.value.telephone ?? '');
+    formData.append('titre', this.myForm.value.titre ?? '');
+    formData.append('adresse', this.myForm.value.adresse ?? '');
+    formData.append('latitude', this.myForm.value.latitude?.toString() ?? '');
+    formData.append('longitude', this.myForm.value.longitude?.toString() ?? '');
+    formData.append('lien', this.myForm.value.lien ?? '');
+    formData.append('province', this.myForm.value.province ?? '');
+    formData.append('type', this.myForm.value.type ?? '');
+
+    // Ajout du fichier image au FormData si présent
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile, this.selectedFile.name);
+    }
+
+    console.log(this.selectedFile);
+
+    // Envoi du FormData avec le service
+    this.clubService.uploadClub(formData).subscribe((data) => {
+      console.log(data);
+    });
+
+    this.getClub();
+  }
+
+  deleteClub(id: string) {
+    this.clubService.deleteClub(id).subscribe((data) => {
+      console.log(data);
+    });
+    this.getClub();
+  }
+
+  getClub(){
+    this.clubService.getClub().subscribe((data: Club[]) => {
+      this.datas = data;
+    });
+    window.location.reload();
+  }
+
+  // Méthode appelée lors de la sélection d'un fichier
+  onFileSelected(event: Event) {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files && fileInput.files.length > 0) {
+      this.selectedFile = fileInput.files[0];
+    }
+  }
+
   selectChange(event: any) {
     this.selectedOption = event.target.value;
-    console.log(this.selectedOption);
   }
 
   filterClub(type: string) {
-    if(this.selectedOption === "Toutes") {
+    if (this.selectedOption === 'Toutes') {
       return true;
     } else if (type === this.selectedOption) {
       return true;
     }
     return false;
   }
-
 }

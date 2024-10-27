@@ -10,10 +10,10 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   
-  apiUrl = environmentProd.apiUrl;
+  apiUrl = environment.apiUrl;
 
   login(login: string, password: string) {
-    return this.http.post(this.apiUrl + '/login', {login, password});
+    return this.http.post(this.apiUrl + 'login', {login, password});
   }
 
   getAuthToken() {

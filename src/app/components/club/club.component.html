@@ -10,6 +10,60 @@
   </div>
 </div>
 
+<div class="container mt-5" *ngIf="authToken">
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseClub" aria-expanded="false" aria-controls="collapseExample">
+    Ajouter un club
+  </button>
+  <div class="collapse mt-5 form" id="collapseClub">
+    <div class="card card-body">
+      <h3>Création d'un club</h3>
+      <form [formGroup]="myForm" (ngSubmit)="addClub()">
+        <div class="mb-3">
+          <input type="text" formControlName="mail" class="form-control" placeholder="E-Mail">
+        </div>
+        <div class="mb-3">
+          <input type="text" formControlName="telephone" placeholder="Téléphone" class="form-control">
+        </div>
+        <div class="mb-3">
+          <input type="text" class="form-control" formControlName="titre" placeholder="Nom">
+        </div>
+        <div class="mb-3">
+          <input type="text" placeholder="Adresse" formControlName="adresse" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+          <input type="text" class="form-control" formControlName="latitude" placeholder="Latitude">
+        </div>
+        <div class="mb-3">
+          <input type="text" placeholder="Longitude" formControlName="longitude" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+          <input type="text" placeholder="Lien" formControlName="lien" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+          <label for="">Type d'activités :</label>
+          <select class="form-control" formControlName="type">
+            <option value="Toutes">Toutes</option>
+            <option value="Loisirs">Loisirs</option>
+            <option value="Compétition">Compétition</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="">Province :</label>
+          <select class="form-control" formControlName="province">
+            <option value="Sud">Sud</option>
+            <option value="Nord">Nord</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="">Logo du club :</label>
+          <input type="file" (change)="onFileSelected($event)" formControlName="image" placeholder="Ajouter une image" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div class="container mt-3">
   <div class="d-flex mt-5">
     <h2>Vers quels types d'activités voulez-vous vous diriger ? </h2>
@@ -28,12 +82,89 @@
       <div class="d-flex flex-column">
         <div class="mt-3" *ngFor="let club of datas">
           <div class="d-flex" *ngIf="filterClub(club.type)">
-            <img [src]="club.image" class="" alt="..." width="100" height="100">
+            <img [src]="imageUrls[club.id]" class="" alt="..." width="100" height="100">
             <div class="flex-column mx-3">
               <div class="">{{ club.titre }}</div>
               <div class="">{{ club.adresse }}</div>
               <a [href]="club.lien" target="_blank" class="">Se renseigner</a>
             </div>
+          </div>
+          <div class="mt-3">
+            <button *ngIf="authToken && filterClub(club.type)"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseClubModif" aria-expanded="false" aria-controls="collapseExample" class="btn btn-secondary">Modifier le club</button> 
+
+
+            <div class="collapse mt-3 my-3" id="collapseClubModif">
+              <div class="card card-body">
+                <h3>Modification d'un club</h3>
+                <form [formGroup]="myForm" (ngSubmit)="addClub()">
+                  <div class="mb-3">
+                    <input type="text" formControlName="mail" class="form-control" placeholder="E-Mail">
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" formControlName="telephone" placeholder="Téléphone" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" class="form-control" formControlName="titre" placeholder="Nom">
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" placeholder="Adresse" formControlName="adresse" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" class="form-control" formControlName="latitude" placeholder="Latitude">
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" placeholder="Longitude" formControlName="longitude" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" placeholder="Lien" formControlName="lien" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-3">
+                    <label for="">Type d'activités :</label>
+                    <select class="form-select" formControlName="type">
+                      <option value="Toutes">Toutes</option>
+                      <option value="Loisirs">Loisirs</option>
+                      <option value="Compétition">Compétition</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="">Province :</label>
+                    <select class="form-select" formControlName="province">
+                      <option value="Sud">Sud</option>
+                      <option value="Nord">Nord</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="">Logo du club :</label>
+                    <input type="file" (change)="onFileSelected($event)" formControlName="image" placeholder="Ajouter une image" class="form-control">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </form>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            <button *ngIf="authToken && filterClub(club.type)" (click)="deleteClub(club.id)" class="btn btn-primary mx-3">Supprimer le club</button> 
           </div>
         </div>
       </div>
