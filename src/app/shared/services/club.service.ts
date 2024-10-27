@@ -32,5 +32,4 @@ export class ClubService {
   deleteClub(id: string): Observable<any> {
     return this.http.delete(this.apiUrl + `/delete/${id}`);
   }
-  
 }
