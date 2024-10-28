@@ -14,7 +14,7 @@ export class ClubService {
   apiUrl: string = environmentProd.apiUrl + 'api/v1/clubs';
 
   getClub(): Observable<Club[]> {
-    return this.http.get<Club[]>(this.apiUrl);
+    return this.http.get<Club[]>(this.apiUrl + '/get');
   }
 
   getClubById(id: number): Observable<Club> {

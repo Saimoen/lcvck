@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   
-  apiUrl = environment.apiUrl;
+  apiUrl = environmentProd.apiUrl;
 
   login(login: string, password: string) {
     return this.http.post(this.apiUrl + 'login', {login, password});
