@@ -1,5 +1,5 @@
 export interface Club {
-    id: string;
+    id: number;
     image: Blob;
     mail: string;
     telephone: string;

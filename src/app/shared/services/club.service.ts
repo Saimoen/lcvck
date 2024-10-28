@@ -11,10 +11,14 @@ import { environment } from '../../../environments/environment';
 export class ClubService {
 
   constructor(private http: HttpClient) { }
-  apiUrl: string = environment.apiUrl + 'api/v1/clubs';
+  apiUrl: string = environmentProd.apiUrl + 'api/v1/clubs';
 
   getClub(): Observable<Club[]> {
     return this.http.get<Club[]>(this.apiUrl);
+  }
+
+  getClubById(id: number): Observable<Club> {
+    return this.http.get<Club>(this.apiUrl + `/get/${id}`);
   }
 
   uploadClub(formData: FormData): Observable<any> {
@@ -25,11 +29,26 @@ export class ClubService {
     return this.http.get(this.apiUrl + `/image/${id}`, { responseType: 'blob' });
   }
 
-  modifyClub(formData: FormData, id: string): Observable<any> {
-    return this.http.put(this.apiUrl + `/update/${id}`, formData);
-  }
+  updateClub(club: Club, file: File): Observable<any> {
+    const formData: FormData = new FormData();
+    if (file) {
+        formData.append('image', file, file.name); // Ajoutez le fichier d'image si disponible
+    }
+    formData.append('mail', club.mail);
+    formData.append('telephone', club.telephone);
+    formData.append('titre', club.titre);
+    formData.append('adresse', club.adresse);
+    formData.append('latitude', club.latitude.toString());
+    formData.append('longitude', club.longitude.toString());
+    formData.append('lien', club.lien);
+    formData.append('province', club.province);
+    formData.append('type', club.type);
 
-  deleteClub(id: string): Observable<any> {
+    // Appelez le endpoint PUT
+    return this.http.put(this.apiUrl + `/update/${club.id}`, formData);
+}
+
+  deleteClub(id: number): Observable<any> {
     return this.http.delete(this.apiUrl + `/delete/${id}`);
   }
 }

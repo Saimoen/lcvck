@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NgFor, NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { ClubService } from '../../shared/services/club.service';
 import L from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
@@ -11,7 +11,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-club',
   standalone: true,
-  imports: [RouterModule, LeafletModule, NgFor, NgIf, ReactiveFormsModule],
+  imports: [RouterModule, LeafletModule, NgFor, NgIf, ReactiveFormsModule, NgClass],
   templateUrl: './club.component.html',
   styleUrl: './club.component.scss',
 })
@@ -28,6 +28,8 @@ export class ClubsComponent {
     province: new FormControl(''),
     type: new FormControl(''),
   });
+
+  selectedCourseId: number | null = null;
 
   options = {
     layers: [
@@ -49,7 +51,7 @@ export class ClubsComponent {
   public map!: L.Map;
   public selectedOption: string = 'Toutes';
   public authToken?: string | null;
-  public selectedFile: File | null = null; // Propriété pour stocker le fichier sélectionné
+  public selectedFile?: File; // Propriété pour stocker le fichier sélectionné
   public imageUrls: { [id: string]: string } = {};
 
   constructor(
@@ -116,7 +118,7 @@ export class ClubsComponent {
     this.getClub();
   }
 
-  deleteClub(id: string) {
+  deleteClub(id: number) {
     this.clubService.deleteClub(id).subscribe((data) => {
       console.log(data);
     });
@@ -126,9 +128,12 @@ export class ClubsComponent {
   getClub(){
     this.clubService.getClub().subscribe((data: Club[]) => {
       this.datas = data;
+      console.log(this.datas);
     });
     window.location.reload();
   }
+
+  
 
   // Méthode appelée lors de la sélection d'un fichier
   onFileSelected(event: Event) {
@@ -140,6 +145,68 @@ export class ClubsComponent {
 
   selectChange(event: any) {
     this.selectedOption = event.target.value;
+  }
+
+  modifyClub(id: number) {
+    const formValue = this.myForm.value;
+    const clubData: Club = {
+      id: id,
+      mail: formValue.mail || '',
+      telephone: formValue.telephone || '',
+      titre: formValue.titre || '',
+      adresse: formValue.adresse || '',
+      latitude: formValue.latitude || '',
+      longitude: formValue.longitude || '',
+      lien: formValue.lien || '',
+      province: formValue.province || '',
+      type: formValue.type || '',
+      image: this.selectedFile || new Blob(),
+    };
+
+    // Appel au service pour envoyer les données à l'API
+    if(this.selectedFile) {
+      this.clubService.updateClub(clubData, this.selectedFile).subscribe(
+        (response) => {
+          console.log('Réponse du serveur : ', response);
+          console.log('ID : ', id);
+  
+          this.getClub();
+          window.location.reload();
+          alert('Données modifiées avec succès');
+        },
+        (error) => {
+          console.log('ID : ', id);
+          console.error("Erreur lors de l'envoi : ", error);
+          console.log('ClubData : ', clubData);
+          alert("Erreur lors de la modification des données");
+        }
+      );
+    }
+
+  }
+
+  getClubById(id: number) {
+    // Si l'ID est déjà sélectionné, désélectionnez-le
+    if (this.selectedCourseId === id) {
+      this.selectedCourseId = null;
+    } else {
+      this.selectedCourseId = id;
+      // Ici, vous pouvez également ajouter la logique pour récupérer les données de la course si nécessaire
+      this.clubService.getClubById(id).subscribe((data) => {
+        // Pré-remplir le formulaire avec les données de la course
+        this.myForm.patchValue({
+            mail: data.mail,
+            telephone: data.telephone,
+            titre: data.titre,
+            adresse: data.adresse,
+            latitude: data.latitude,
+            longitude: data.longitude,
+            lien: data.lien,
+            province: data.province,
+            type: data.type,
+          });
+        });
+    }
   }
 
   filterClub(type: string) {
