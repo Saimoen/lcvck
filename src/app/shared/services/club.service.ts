@@ -32,7 +32,7 @@ export class ClubService {
   updateClub(club: Club, file: File): Observable<any> {
     const formData: FormData = new FormData();
     if (file) {
-        formData.append('image', file, file.name); // Ajoutez le fichier d'image si disponible
+        formData.append('image', file, file.name); // Ajoutez le fichier d'image si dispo
     }
     formData.append('mail', club.mail);
     formData.append('telephone', club.telephone);
