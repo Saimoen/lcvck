@@ -36,4 +36,5 @@ export class AppComponent {
   isHomePage() {
     return this.router.url === '/accueil';
   }
+  
 }
