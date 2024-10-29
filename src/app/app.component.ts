@@ -1,4 +1,3 @@
-import { ContactComponent } from './components/contact/contact.component';
 import { DocumentairesComponent } from './components/documentaires/documentaires.component';
 import { ClubsComponent } from './components/club/club.component';
 import { Component } from '@angular/core';
@@ -22,7 +21,6 @@ import { ConnexionComponent } from './components/auth/connexion/connexion.compon
     HistoireComponent,
     ClubsComponent,
     DocumentairesComponent,
-    ContactComponent,
     ConnexionComponent,
     RouterLink,
     NgIf,
